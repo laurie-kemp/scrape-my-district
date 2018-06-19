@@ -1,9 +1,4 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import ListGrid from "./components/List";
-
-const rows = [
+export const rows = [
   {
     id: 1,
     company_name: "22tracks",
@@ -26,15 +21,3 @@ const rows = [
     city: "Utrecht"
   }
 ];
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <ListGrid />
-      </div>
-    );
-  }
-}
-
-export default App;
