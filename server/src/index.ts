@@ -5,6 +5,7 @@ import UserController from './users/controller'
 import { verify } from './jwt'
 import User from './users/entity'
 import * as Koa from 'koa'
+import DatabaseController from './database/controller';
 
 
 const app = new Koa()
@@ -13,7 +14,8 @@ const app = new Koa()
 useKoaServer(app, {
   cors: true,
   controllers: [
-    UserController
+    UserController,
+    DatabaseController
 	],
 	
   authorizationChecker: (action: Action) => {
