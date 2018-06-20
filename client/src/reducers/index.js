@@ -1,5 +1,7 @@
-import listRed from './listRed'
+import listRed from "./listRed";
+import currentUser from "./currentUser";
 
 export default {
-  listRed
-}
+  listRed,
+  currentUser
+};

@@ -10,7 +10,8 @@ class App extends Component {
         <div className="App">
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/" render={() => <Redirect to="/login" />} />
-          LoginForm
+          Laurie" lastName="Kemp" email="laurie.kemp@scaleupnation.com"
+          password="Laurie999"
         </div>
       </Router>
     );
