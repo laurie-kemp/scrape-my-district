@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import ListGrid from "./components/List";
+import List from "./components/List";
 
 const rows = [
   {
@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ListGrid />
+        <List />
       </div>
     );
   }
