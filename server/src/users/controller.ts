@@ -19,15 +19,14 @@ export default class UserController {
   }
 
   @Post('/users')
-  async signup(
-    @Body() data: User
+  async createUser(
+    @Body() user: User
   ) {
-    const {password, ...rest} = data
+    const {password, ...rest} = user
     const entity = User.create(rest)
     await entity.setPassword(password)
-
-    const user = await entity.save()
-
-    return user
+    return entity.save()
   }
 }
+
+// http post :4000/users firstName="Laurie" lastName="Kemp" email="laurie.kemp@scaleupnation.com" password="Laurie999"

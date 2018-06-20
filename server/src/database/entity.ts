@@ -101,7 +101,7 @@ export default class Database extends BaseEntity {
  FTE_check_complete_1Y_0_N: string
 
  @Column('text', {nullable:true})
- Formula_driven_1_potential_scale_up_2_bigger_than_a_scale_up_3_not_a_scale_up_0_Dead: string
+ Formula_driven_1_potential_scale_up_2_bigger_than_a_scale_up_3_: string
 
  @Column('text', {nullable:true})
  remarks: string
