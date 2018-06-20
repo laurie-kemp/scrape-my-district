@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
-import ReactDOM from "react-dom";
 import HotTable from "react-handsontable";
-import PropTypes from "prop-types";
 import { changeCell } from "../actions/list";
-import store from '../store'
 
 // export default class ListGrid extends React.Component {
 //   constructor(props) {
