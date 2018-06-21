@@ -1,5 +1,7 @@
-import listRed from './listRed'
+import listRed from "./listRed";
+import databases from "./databases";
 
 export default {
-  listRed
-}
+  listRed,
+  databases
+};
