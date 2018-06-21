@@ -3,6 +3,9 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import LoginPage from "./components/login/LoginPage";
 import TopBar from "./components/layout/TopBar";
+import Homepage from "./components/homepage/homepage.js";
+import LogoutPage from "./components/logout/LogoutPage";
+import List from "./components/List.js";
 
 // /Users/fong/code/scrape-rwapp/scrape-my-district/client/src/components
 class App extends Component {
@@ -12,11 +15,14 @@ class App extends Component {
         <div className="App">
           <nav>
             <TopBar />
-            test
           </nav>
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/" render={() => <Redirect to="/login" />} />
-          LoginForm
+          <main style={{ marginTop: 75 }}>
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/logout" component={LogoutPage} />
+            <Route exact path="/homepage" component={Homepage} />
+            <Route exact path="/list" component={List} />
+            <Route exact path="/" render={() => <Redirect to="/login" />} />
+          </main>
         </div>
       </Router>
     );
