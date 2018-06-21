@@ -3,14 +3,15 @@ import { baseUrl } from "../constants";
 
 export const CHANGE_CELL = "CHANGE_CELL";
 export const FETCH_ALL_DATA = "FETCH_ALL_DATA";
+export const UPDATE_CSV = "UPDATE_CSV";
 
-// export const changeCell = payload => {
-//   console.log(payload, "THIS IS THE PAYLOAD COMING TO ACTION");
-//   return {
-//     type: CHANGE_CELL,
-//     payload: payload
-//   };
-// };
+export const updateCSV = payload => {
+  console.log(payload, "THIS IS THE PAYLOAD COMING TO ACTION");
+  return {
+    type: UPDATE_CSV,
+    payload: payload
+  };
+};
 
 export const fetchAllData = () => (dispatch, getState) => {
   const state = getState();
