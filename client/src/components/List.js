@@ -34,12 +34,18 @@ export class List extends React.Component {
       values = dbArray.map(entry => {
         return Object.values(entry).map(i => i);
       });
-      console.log(values, "VALUES");
+      // console.log(values, "VALUES");
       // let entry = [];
       // if (dbArray[0]) entry = Object.keys(dbArray[0]).map(i => dbArray[0][i]);
       // console.log(entry, "ENTRY");
       //let data = [];
-      data.push(columnNames);
+      const newNames = columnNames.map(name => {
+        const ArrayOfStrings = name.split("_")
+        // console.log(ArrayOfStrings, "ARRAY OF STRINGS")
+        return ArrayOfStrings.join(" ")
+      })
+      // console.log(newNames, "NEW NAMES")
+      data.push(newNames);
       values.map(entry => data.push(entry));
     }
     console.log(data, "DATA");
