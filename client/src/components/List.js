@@ -39,7 +39,8 @@ export class List extends React.Component {
       // if (dbArray[0]) entry = Object.keys(dbArray[0]).map(i => dbArray[0][i]);
       // console.log(entry, "ENTRY");
       //let data = [];
-      data.push(columnNames);
+      const newNames = columnNames.map(name => name.replace("_", " "))
+      data.push(newNames);
       values.map(entry => data.push(entry));
     }
     console.log(data, "DATA");
