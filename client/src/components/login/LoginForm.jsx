@@ -5,7 +5,7 @@ export default class LoginForm extends PureComponent {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.props.state);
+
     this.props.onSubmit(this.state);
   };
 
@@ -47,3 +47,5 @@ export default class LoginForm extends PureComponent {
     );
   }
 }
+
+// laurie.kemp@scaleupnation.com  password="Laurie999"

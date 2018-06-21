@@ -6,11 +6,13 @@ import { Redirect } from "react-router-dom";
 
 class LoginPage extends PureComponent {
   handleSubmit = data => {
+    console.log(data, "this data");
+
     this.props.login(data.email, data.password);
   };
 
   render() {
-    if (this.props.currentUser) return <Redirect to="/" />;
+    if (!this.props.currentUser) return <Redirect to="/" />;
 
     return (
       <div>
@@ -28,8 +30,8 @@ class LoginPage extends PureComponent {
 
 const mapStateToProps = function(state) {
   return {
-    currentUser: state.currentUser,
-    error: state.login.error
+    currentUser: state.currentUser
+    // error: state.login.error
   };
 };
 
