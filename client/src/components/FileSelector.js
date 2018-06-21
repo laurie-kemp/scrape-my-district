@@ -11,6 +11,8 @@ export class FileSelector extends Component {
 
   handleChange = selectorFiles => {
     Papa.parse(selectorFiles[0], {
+      delimiter: ";",
+      escapeChar: '"""',
       header: true,
       download: true,
       skipEmptyLines: true,
