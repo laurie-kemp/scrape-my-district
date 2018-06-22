@@ -3,7 +3,9 @@ import { DefaultNamingStrategy } from 'typeorm/naming-strategy/DefaultNamingStra
 import { NamingStrategyInterface } from 'typeorm/naming-strategy/NamingStrategyInterface'
 import { snakeCase } from 'typeorm/util/StringUtils'
 import User from './users/entity'
-import Database from './database/entity';
+import Database from './database/entity'
+import Update from './updates/entity';
+
 
 class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 
@@ -27,12 +29,13 @@ class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrate
 export default () =>
   createConnection({
     type: "postgres",
-    url: process.env.DATABASE_URL || 'postgres://dweaglqdafzvlr:f80a7a6d81ece774d37b9eca512b6765e3dfaeba3a360f1880da96fab7b2192b@ec2-54-217-217-194.eu-west-1.compute.amazonaws.com:5432/d9n88nf4t2vf6i',
+    url: process.env.DATABASE_URL || 'postgres://postgres:password@localhost:5432/postgres',
     entities: [
       User,
-      Database
+      Database,
+      Update
     ],
-    ssl: true,
+    // ssl: true,
     synchronize: true, // careful with this in production!
     logging: true,
     namingStrategy: new CustomNamingStrategy()

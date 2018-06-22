@@ -3,6 +3,9 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import LoginPage from "./components/login/LoginPage";
 
+import Reports from "./components/reports/Reportspage";
+
+
 import TopBar from "./components/layout/TopBar";
 import Homepage from "./components/homepage/homepage.js";
 import LogoutPage from "./components/logout/LogoutPage";
@@ -10,12 +13,13 @@ import LogoutPage from "./components/logout/LogoutPage";
 import List from "./components/List";
 import FileSelector from "./components/FileSelector";
 
-// /Users/fong/code/scrape-rwapp/scrape-my-district/client/src/components
+
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
+
           <nav>
             <TopBar />
           </nav>
@@ -24,9 +28,12 @@ class App extends Component {
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/logout" component={LogoutPage} />
             <Route exact path="/homepage" component={Homepage} />
+            <Route exact path="/list" component={List} />
+            <Route exact path="/reports" component={Reports} />
             <Route exact path="/fileselector" component={FileSelector} />
             <Route exact path="/" render={() => <Redirect to="/login" />} />
           </main>
+
         </div>
       </Router>
     );

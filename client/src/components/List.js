@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import HotTable from "react-handsontable";
 import { changeCell, fetchAllData, updateData } from "../actions/list";
+import {fetchUpdates} from '../actions/updates'
 
 export class List extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export class List extends React.Component {
 
   componentWillMount() {
     this.props.fetchAllData();
+    this.props.fetchUpdates()
   }
 
   render() {
@@ -97,5 +99,5 @@ const mapStateToProps = ({ listRed, databases }) => ({
 
 export default connect(
   mapStateToProps,
-  { changeCell, fetchAllData }
+  { changeCell, fetchAllData, fetchUpdates }
 )(List);
