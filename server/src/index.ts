@@ -7,12 +7,14 @@ import User from "./users/entity";
 import * as Koa from "koa";
 import DatabaseController from "./database/controller";
 import LoginController from "./logins/controller";
+import UpdateController from "./updates/controller";
+
 
 const app = new Koa();
 
 useKoaServer(app, {
   cors: true,
-  controllers: [UserController, DatabaseController, LoginController],
+  controllers: [UserController, DatabaseController, LoginController, UpdateController],
 
   authorizationChecker: (action: Action) => {
     const header: string = action.request.headers.authorization;

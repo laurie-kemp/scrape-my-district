@@ -30,3 +30,5 @@ export default class UserController {
 }
 
 // http post :4000/users firstName="Laurie" lastName="Kemp" email="laurie.kemp@scaleupnation.com" password="Laurie999"
+
+// http post :4000/users firstName="Something" lastName="Else" email="testing4@testing.com" password="123123123"
