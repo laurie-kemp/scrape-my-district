@@ -9,9 +9,10 @@ class Reports extends Component {
     state = {
         renderAll: false,
         renderSpecific: false,
+        renderSpecificColumn: false,
         renderOptions: false,
         renderSpecificUpdates: null,
-        value: ''
+        filteredUpdates: null
     }
 
     componentDidMount() {
@@ -34,54 +35,79 @@ class Reports extends Component {
         )
     }
 
-    renderSpecificUpdates = () => {
-        let filteredUpdates = []
+    renderSpecificUpdates = (company) => {
+        let filteredByCompany = []
         this.props.updates.forEach(update => {
-            if (update.company === this.state.value) filteredUpdates.push(update)
+            if (update.company === company) filteredByCompany.push(update)
         })
-        return (
-            <div>
-                {filteredUpdates.map((update, i) => (
-                    <div key={`${i} ${update.company}`}>
-                        <h1>{update.company}</h1>
-                        <h2>{update.timestamp}</h2>
-                        <h2>{update.columnName}</h2>
-                        <h2>{update.change}</h2>
-                    </div>
-                ))}
-            </div>
-        )
+        this.setState({filtered: filteredByCompany})
+    }
+    
+    renderFilterByColumn = () => {
+        console.log(this.state.column)
+        if (this.state.column) {
+            const filteredByColumn = this.state.filtered
+                .filter(update => {
+                    return update.columnName === this.state.column
+            })
+            this.setState({filteredByColumn, renderSpecific: false})
+        }
     }
 
     getSpecificUpdates = () => {
         const updates = this.props.updates
         let companies = []
-        updates.map(update => companies.push(update.company))
+        let columns = []
+        updates.map(update => {
+            companies.push(update.company)
+            columns.push(update.columnName)
+        })
         const companiesWithoutDuplicates = Array.from(new Set(companies))
-        this.setState({companies: companiesWithoutDuplicates, renderOptions: true, value: companiesWithoutDuplicates[0]})
+        const columnsWithoutDuplicates = Array.from(new Set(columns))
+
+        this.setState({companies: companiesWithoutDuplicates, columns: columnsWithoutDuplicates, renderOptions: true, value: companiesWithoutDuplicates[0]})
     }
 
     setRenderAll = () => {
         this.setState({renderAll: true})
     }
 
-    handleChange = (e) => {
-        console.log(e)
-        const value = e.value
-        this.setState({value, renderSpecific: true});
+    handleCompanyChange = (e) => {
+        if (e) {
+            const value = e.value
+            // this.renderSpecificUpdates(value)
+            this.setState({company: value});
+        }
     }
 
-    optionsList = () => {
+    handleColumnChange = (e) => {
+        if (e) {
+            const value = e.value
+            this.setState({column: value});
+            // this.renderFilterByColumn(value)
+        }
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.renderSpecificUpdates(this.state.company)
+        this.renderFilterByColumn(this.state.column)
+    }
+
+    companyOptionsList = () => {
         let options = []
         this.state.companies.forEach(company => {
             options.push({value: company, label: company})
         })
         return options
     }
-    
-    handleSubmit = (event) => {
-        this.setState({renderSpecific: true});
-        event.preventDefault();
+
+    columnsOptionsList = () => {
+        let options = []
+        this.state.columns.forEach(column => {
+            options.push({value: column, label: column})
+        })
+        return options
     }
 
     render() {
@@ -90,28 +116,56 @@ class Reports extends Component {
             <div>
                 <button onClick={() => this.setRenderAll()}>Fetch all updates</button>
                 <button onClick={() => this.getSpecificUpdates()}>Get specific updates</button>
+                <button onClick={() => this.setState({})}>Clear search</button>
                 {this.state.renderOptions && 
                     <div>
                         <form onSubmit={this.handleSubmit}>
-                            {/* <label>
-                                Which company would you like to filter by
-                                <select onChange={this.handleChange}>
-
-                                </select>
-                            </label> */}
                             <label>Fetch updates for company
                             </label>
                             <Select
                                 name="form-field-name"
                                 // multi={true}
-                                // value={this.state.value}
-                                onChange={this.handleChange}
-                                options={this.optionsList()}
+                                value={this.state.company}
+                                onChange={this.handleCompanyChange}
+                                options={this.companyOptionsList()}
                             />
-                            <input type='submit'/>
+                            <Select
+                                name="form-field-name"
+                                // multi={true}
+                                value={this.state.column}
+                                onChange={this.handleColumnChange}
+                                options={this.columnsOptionsList()}
+                            />
+                            <input type='submit' value='Submit'/>
                         </form>
                         <div>
-                            {this.state.renderSpecific && this.renderSpecificUpdates()}
+
+                                {this.state.renderSpecific && 
+                                    <div>
+                                        {this.state.filtered &&this.state.filtered.map((update, i) => {
+                                        return (
+                                            <div key={`${i} ${update.company}`}>
+                                                <h1>{update.company}</h1>
+                                                <h2>{update.timestamp}</h2>
+                                                <h2>{update.columnName}</h2>
+                                                <h2>{update.change}</h2>
+                                            </div>
+                                        )})}
+                                    </div>
+                                }
+                                {this.state.renderSpecificColumn && 
+                                    <div>
+                                        {this.state.filteredByColumn && this.state.filteredByColumn.map((update, i) => {
+                                        return (
+                                            <div key={`${i} ${update.company}`}>
+                                                <h1>{update.company}</h1>
+                                                <h2>{update.timestamp}</h2>
+                                                <h2>{update.columnName}</h2>
+                                                <h2>{update.change}</h2>
+                                            </div>
+                                        )})}
+                                    </div>
+                                }
                         </div>
                     </div>
                 }
