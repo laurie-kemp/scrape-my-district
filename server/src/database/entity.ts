@@ -89,6 +89,9 @@ export default class Database extends BaseEntity {
  product_in_market: string
 
  @Column('text', {nullable:true})
+ no_of_founders: string
+
+ @Column('text', {nullable:true})
  no_of_founder_with_entrepreneurial_experience: string
 
  @Column('text', {nullable:true})
