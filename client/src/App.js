@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import LoginPage from "./components/login/LoginPage";
+import LoginForm from "./components/login/LoginForm";
 import List from "./components/List";
 import FileSelector from "./components/FileSelector";
 import Reports from "./components/reports/Reportspage";
@@ -22,7 +22,7 @@ class App extends Component {
           </nav>
 
           <main style={{ marginTop: 75 }}>
-            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/login" component={LoginForm} />
             <Route exact path="/logout" component={LogoutPage} />
             <Route exact path="/homepage" component={Homepage} />
             <Route exact path="/list" component={List} />

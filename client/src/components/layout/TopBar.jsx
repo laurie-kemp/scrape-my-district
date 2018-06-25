@@ -10,7 +10,7 @@ import AccountIcon from "@material-ui/icons/AccountBox";
 
 const TopBar = props => {
   const { location, history, user } = props;
-  console.log(location.pathname);
+  
   return (
     <AppBar position="absolute" style={{ zIndex: 10 }}>
       <Toolbar>
@@ -23,17 +23,6 @@ const TopBar = props => {
           </Button>
         )}
 
-        {location.pathname.indexOf("signup") > 0 && (
-          <Button color="inherit" onClick={() => history.push("/login")}>
-            Login
-          </Button>
-        )}
-
-        {location.pathname.indexOf("games/") > 0 && (
-          <Button color="inherit" onClick={() => history.push("/games")}>
-            All Games
-          </Button>
-        )}
         {location.pathname === "/homepage" && (
           <Button color="inherit" onClick={() => history.push("/logout")}>
             Log out
@@ -46,9 +35,10 @@ const TopBar = props => {
 
 const mapStateToProps = state => ({
   user: state.currentUser
-  // &&
-  // state.users &&
-  // state.users[userId(state.currentUser.jwt)]
+   &&
+  state.users &&
+  state.users[userId(state.currentUser.jwt)]
 });
 
 export default withRouter(connect(mapStateToProps)(TopBar));
+

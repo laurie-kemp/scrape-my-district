@@ -41,27 +41,6 @@ export const login = (email, password) => dispatch =>
       }
     });
 
-// export const signup = (email, password) => (dispatch) =>
-// 	request
-// 		.post(`${baseUrl}/users`)
-// 		.send({ firstName: email, lastName: email, email, password })
-// 		.then(result => {
-// 			dispatch({
-// 				type: USER_SIGNUP_SUCCESS
-// 			})
-// 		})
-// 		.catch(err => {
-// 			if (err.status === 400) {
-// 				dispatch({
-// 					type: USER_SIGNUP_FAILED,
-// 					payload: err.response.body.message || 'Unknown error'
-// 				})
-// 			}
-// 			else {
-// 				console.error(err)
-// 			}
-// 		})
-
 export const getUsers = () => (dispatch, getState) => {
   const state = getState();
   if (!state.currentUser) return null;
