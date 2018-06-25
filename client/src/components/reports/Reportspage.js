@@ -76,6 +76,8 @@ class Reports extends Component {
         if (e) {
             const value = e.value
             this.setState({company: value});
+        } else {
+            this.setState({company: ''})
         }
     }
 
@@ -83,6 +85,8 @@ class Reports extends Component {
         if (e) {
             const value = e.value
             this.setState({column: value});
+        } else {
+            this.setState({column: ''})
         }
     }
 
@@ -120,14 +124,12 @@ class Reports extends Component {
                             </label>
                             <Select
                                 name="form-field-name"
-                                // multi={true}
                                 value={this.state.company}
                                 onChange={this.handleCompanyChange}
                                 options={this.companyOptionsList()}
                             />
                             <Select
                                 name="form-field-name"
-                                // multi={true}
                                 value={this.state.column}
                                 onChange={this.handleColumnChange}
                                 options={this.columnsOptionsList()}
