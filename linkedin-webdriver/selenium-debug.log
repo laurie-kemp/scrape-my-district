@@ -1,0 +1,8 @@
+17:11:21.460 INFO [GridLauncherV3.launch] - Selenium build info: version: '3.12.0', revision: '7c6e0b3'
+17:11:21.462 INFO [GridLauncherV3$1.launch] - Launching a standalone Selenium Server on port 4444
+2018-06-20 17:11:21.582:INFO::main: Logging initialized @353ms to org.seleniumhq.jetty9.util.log.StdErrLog
+17:11:21.708 INFO [SeleniumServer.boot] - Selenium Server is up and running on port 4444
+17:11:21.959 INFO [ActiveSessionFactory.apply] - Capabilities are: Capabilities {acceptSslCerts: true, browserName: chrome, javascriptEnabled: true, name: Guinea Pig}
+17:11:21.962 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.chrome.ChromeDriverService)
+Starting ChromeDriver 2.40.565383 (76257d1ab79276b2d53ee976b2c3e3b9f335cde7) on port 11307
+Only local connections are allowed.
