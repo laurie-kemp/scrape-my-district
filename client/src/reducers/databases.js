@@ -1,4 +1,4 @@
-import FETCH_ALL_DATA, { CHANGE_CELL } from "../actions/list";
+import { FETCH_ALL_DATA, CHANGE_CELL } from "../actions/list";
 
 export default (state = [], action) => {
   switch (action.type) {
@@ -7,7 +7,7 @@ export default (state = [], action) => {
         databases[database.id] = database;
         return databases;
       }, {});
-    case "FETCH_ALL_DATA":
+    case FETCH_ALL_DATA:
       return action.payload.reduce((databases, database) => {
         databases[database.id] = database;
         return databases;
