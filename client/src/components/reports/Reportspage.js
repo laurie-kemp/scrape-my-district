@@ -36,10 +36,12 @@ class Reports extends Component {
     renderSpecificUpdates = (company) => {
         let filteredByCompany = []
         this.props.updates.forEach(update => {
-            if (update.company === company) filteredByCompany.push(update)
+            if (update.company === company) {
+                filteredByCompany.push(update)
+            }
         })
         this.setState({filtered: filteredByCompany, renderSpecific: true})
-        if (this.state.column && filteredByCompany.length > 1) {
+        if (this.state.column && filteredByCompany.length > 0) {
             const filteredByColumn = filteredByCompany
                 .filter(update => {
                     return update.columnName === this.state.column
@@ -112,6 +114,8 @@ class Reports extends Component {
     }
 
     render() {
+        console.log(this.state, 'This state')
+        console.log(this.props, 'This props')
         return (
             <div>
                 <button onClick={() => this.setRenderAll()}>Fetch all updates</button>
