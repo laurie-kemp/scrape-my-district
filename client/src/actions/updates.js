@@ -12,7 +12,7 @@ export const fetchUpdates = () => dispatch => {
     .then(result => {
       dispatch({
         type: FETCH_ALL_UPDATES,
-        payload: result.body.updates
+        payload: result.body
       });
     });
 };
@@ -25,7 +25,7 @@ export const addUpdate = update => dispatch => {
     .then(response =>
       dispatch({
         type: ADD_UPDATE,
-        payload: response.body.updates
+        payload: response.body
       })
     );
 };

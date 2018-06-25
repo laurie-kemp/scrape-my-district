@@ -1,5 +1,5 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import { MinLength, IsString } from "class-validator";
+import { MinLength, IsString, IsOptional } from "class-validator";
 
 @Entity()
 export default class Update extends BaseEntity {
@@ -10,10 +10,12 @@ export default class Update extends BaseEntity {
   @Column("text")
   company: string;
 
+  @IsOptional()
   @IsString()
   @Column("timestamp", {
     precision: 3,
     default: () => "CURRENT_TIMESTAMP",
+    nullable: true,
     onUpdate: "CURRENT_TIMESTAMP"
   })
   timestamp: Date;
