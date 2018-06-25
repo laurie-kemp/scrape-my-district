@@ -8,6 +8,7 @@ import store from './store'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green'
 
+
 const theme = createMuiTheme ({
   palette:{
     type: 'light',
@@ -16,7 +17,8 @@ const theme = createMuiTheme ({
   overrides:{
     MuiButton: {
       root: {
-        background: '#12a300'
+        background: '#12a300',
+        color: 'white'
       }
     }
   }

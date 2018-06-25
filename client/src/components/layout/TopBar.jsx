@@ -7,15 +7,16 @@ import { withRouter } from "react-router";
 import { userId } from "../../jwt";
 import { connect } from "react-redux";
 import AccountIcon from "@material-ui/icons/AccountBox";
+import "../../App.css";
 
 const TopBar = props => {
   const { location, history, user } = props;
   
   return (
-    <AppBar position="absolute" style={{ zIndex: 10 }}>
+    <AppBar className='AppBar'position="absolute" style={{ zIndex: 10 }}>
       <Toolbar>
         <Typography variant="title" color="inherit" style={{ flex: 1 }}>
-          Scrape my disctrict
+          <img src='scaleupnation-logo.png' className = 'logo'/>
         </Typography>
         {user && (
           <Button color="inherit">
@@ -24,7 +25,19 @@ const TopBar = props => {
         )}
 
         {location.pathname === "/homepage" && (
-          <Button color="inherit" onClick={() => history.push("/logout")}>
+          <Button  onClick={() => history.push("/logout")}>
+            Log out
+          </Button>
+        )}
+
+        {location.pathname === "/list" && (
+          <Button  onClick={() => history.push("/logout")}>
+            Log out
+          </Button>
+        )}
+
+        {location.pathname === "/reports" && (
+          <Button onClick={() => history.push("/logout")}>
             Log out
           </Button>
         )}
