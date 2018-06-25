@@ -1,8 +1,8 @@
-import CHANGE_CELL from "../actions/list";
+import { CHANGE_CELL } from "../actions/list";
 
 export default (state = [], action) => {
   switch (action.type) {
-    case "CHANGE_CELL":
+    case CHANGE_CELL:
       return [
         ...state,
         {
