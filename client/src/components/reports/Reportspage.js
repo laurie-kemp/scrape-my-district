@@ -39,9 +39,14 @@ class Reports extends Component {
             if (update.company === company) filteredByCompany.push(update)
         })
         this.setState({filtered: filteredByCompany, renderSpecific: true})
-        if (this.state.column) {
-            console.log('hello?')
+        if (this.state.column && filteredByCompany.length > 1) {
             const filteredByColumn = filteredByCompany
+                .filter(update => {
+                    return update.columnName === this.state.column
+            })
+            this.setState({filtered: filteredByColumn, renderSpecific: true})
+        } else if (this.state.column) {
+            const filteredByColumn = this.props.updates
                 .filter(update => {
                     return update.columnName === this.state.column
             })
@@ -70,7 +75,6 @@ class Reports extends Component {
     handleCompanyChange = (e) => {
         if (e) {
             const value = e.value
-            // this.renderSpecificUpdates(value)
             this.setState({company: value});
         }
     }
@@ -79,8 +83,6 @@ class Reports extends Component {
         if (e) {
             const value = e.value
             this.setState({column: value});
-            // this.renderSpecificUpdates(this.state.company)
-            // this.renderFilterByColumn(value)
         }
     }
 
@@ -106,7 +108,6 @@ class Reports extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div>
                 <button onClick={() => this.setRenderAll()}>Fetch all updates</button>
@@ -134,33 +135,19 @@ class Reports extends Component {
                             <input type='submit' value='Submit'/>
                         </form>
                         <div>
-
-                                {this.state.renderSpecific && 
-                                    <div>
-                                        {this.state.filtered &&this.state.filtered.map((update, i) => {
-                                        return (
-                                            <div key={`${i} ${update.company}`}>
-                                                <h1>{update.company}</h1>
-                                                <h2>{update.timestamp}</h2>
-                                                <h2>{update.columnName}</h2>
-                                                <h2>{update.change}</h2>
-                                            </div>
-                                        )})}
-                                    </div>
-                                }
-                                {/* {this.state.renderSpecificColumn && 
-                                    <div>
-                                        {this.state.filteredByColumn && this.state.filteredByColumn.map((update, i) => {
-                                        return (
-                                            <div key={`${i} ${update.company}`}>
-                                                <h1>{update.company}</h1>
-                                                <h2>{update.timestamp}</h2>
-                                                <h2>{update.columnName}</h2>
-                                                <h2>{update.change}</h2>
-                                            </div>
-                                        )})}
-                                    </div>
-                                } */}
+                            {this.state.renderSpecific && 
+                                <div>
+                                    {this.state.filtered &&this.state.filtered.map((update, i) => {
+                                    return (
+                                        <div key={`${i} ${update.company}`}>
+                                            <h1>{update.company}</h1>
+                                            <h2>{update.timestamp}</h2>
+                                            <h2>{update.columnName}</h2>
+                                            <h2>{update.change}</h2>
+                                        </div>
+                                    )})}
+                                </div>
+                            }
                         </div>
                     </div>
                 }
