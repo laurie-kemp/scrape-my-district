@@ -18,7 +18,7 @@ export default class UpdateController {
   }
 
   //@Authorized()
-  @Post("/updates")
+  @Post('/updates')
   @HttpCode(201)
   async createUpdate(@Body() update: Update) {
     await update.save();
