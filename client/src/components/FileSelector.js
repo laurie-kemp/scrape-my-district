@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Papa from "papaparse/papaparse.min.js";
+import { updateCSV } from "../actions/list";
+import { connect } from "react-redux";
 
-export default class FileSelector extends Component {
+export class FileSelector extends Component {
   state = {
     docs: null,
     data: null
@@ -9,6 +11,8 @@ export default class FileSelector extends Component {
 
   handleChange = selectorFiles => {
     Papa.parse(selectorFiles[0], {
+      delimiter: ";",
+      escapeChar: '"""',
       header: true,
       download: true,
       skipEmptyLines: true,
@@ -17,8 +21,11 @@ export default class FileSelector extends Component {
   };
 
   updateData = result => {
+    const { updateCSV } = this.props;
     const data = result.data;
     this.setState({ data });
+    updateCSV(this.state.data);
+    console.log(this.state.data, "this is uploaded data");
   };
 
   render() {
@@ -30,3 +37,12 @@ export default class FileSelector extends Component {
     );
   }
 }
+// const mapStateToProps = ({ listRed, databases }) => ({
+//   listRed: fetchAllData(),
+//   databases
+// });
+
+export default connect(
+  null,
+  { updateCSV }
+)(FileSelector);

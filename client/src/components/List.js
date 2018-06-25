@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import HotTable from "react-handsontable";
 import { changeCell, fetchAllData, updateData } from "../actions/list";
+import { changes } from "../lib/functions";
+import FileSelector from "./FileSelector";
 import {fetchUpdates} from '../actions/updates'
 
 export class List extends React.Component {
@@ -22,8 +24,9 @@ export class List extends React.Component {
   }
 
   render() {
-    const { listRed, databases } = this.props;
+    const { listRed, databases, csv, changes } = this.props;
     //this.handsontableData = listRed
+    // if (csv) this.props.changes(databases, csv);
     let dbArray = [];
     if (databases) dbArray = Object.keys(databases).map(i => databases[i]);
     console.log(dbArray, "DATABASE ARRAY");
@@ -42,10 +45,10 @@ export class List extends React.Component {
       // console.log(entry, "ENTRY");
       //let data = [];
       const newNames = columnNames.map(name => {
-        const ArrayOfStrings = name.split("_")
+        const ArrayOfStrings = name.split("_");
         // console.log(ArrayOfStrings, "ARRAY OF STRINGS")
-        return ArrayOfStrings.join(" ")
-      })
+        return ArrayOfStrings.join(" ");
+      });
       // console.log(newNames, "NEW NAMES")
       data.push(newNames);
       values.map(entry => data.push(entry));
@@ -54,6 +57,7 @@ export class List extends React.Component {
 
     return (
       <div id="example-component">
+        <FileSelector />
         <HotTable
           root="hot"
           settings={{
@@ -92,9 +96,11 @@ export class List extends React.Component {
   }
 }
 
-const mapStateToProps = ({ listRed, databases }) => ({
+const mapStateToProps = ({ listRed, databases, csv }) => ({
   listRed: fetchAllData(),
-  databases
+  databases,
+  csv,
+  changes: changes(databases, csv)
 });
 
 export default connect(

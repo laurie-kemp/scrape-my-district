@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import LoginPage from "./components/login/LoginPage";
+import List from "./components/List";
+import FileSelector from "./components/FileSelector";
 
 import Reports from "./components/reports/Reportspage";
 
