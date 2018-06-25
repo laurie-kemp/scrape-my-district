@@ -87,7 +87,6 @@ class Reports extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.renderSpecificUpdates(this.state.company)
-        this.renderFilterByColumn()
     }
 
     companyOptionsList = () => {
