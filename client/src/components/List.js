@@ -97,7 +97,8 @@ export class List extends React.Component {
                 const value = payload.newValue;
                 const newPayload = { [name]: value };
                 this.props.changeCell(payload.row + 1, newPayload);
-                const companyName = databases[payload.id].venture;
+                const companyName = databases[payload.row + 1].venture;
+                console.log(companyName, "COMPANY NAME")
                 const date = Date.now()
                 const update = {
                   company: companyName,
