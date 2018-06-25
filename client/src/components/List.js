@@ -9,13 +9,6 @@ import {fetchUpdates} from '../actions/updates'
 export class List extends React.Component {
   constructor(props) {
     super(props);
-    // this.handsontableData = [
-    //   ["Comany Name", "Website", "Email", "City"],
-    //   [null, null, null, null]
-    //   // ["22tracks", "22tracks.com", "info@22tracks.com", "Amsterdam"],
-    //   // ["44tips", "www.44tips.com", "eric@44tips.com", "The Hague"],
-    //   // ["absrd", "absrd.com", "info@absrd.com", "Utrecht"]
-    // ];
   }
 
   componentWillMount() {
@@ -25,25 +18,18 @@ export class List extends React.Component {
 
   render() {
     const { listRed, databases, csv, changes } = this.props;
-    //this.handsontableData = listRed
-    // if (csv) this.props.changes(databases, csv);
     let dbArray = [];
     if (databases) dbArray = Object.keys(databases).map(i => databases[i]);
-    console.log(dbArray, "DATABASE ARRAY");
+    // console.log(dbArray, "DATABASE ARRAY");
     let columnNames = [];
     if (dbArray[0]) columnNames = Object.keys(dbArray[0]).map(i => i);
-    console.log(columnNames, "COLUMNS");
+    // console.log(columnNames, "COLUMNS");
     let data = [];
     let values = [];
     if (dbArray) {
       values = dbArray.map(entry => {
         return Object.values(entry).map(i => i);
       });
-      // console.log(values, "VALUES");
-      // let entry = [];
-      // if (dbArray[0]) entry = Object.keys(dbArray[0]).map(i => dbArray[0][i]);
-      // console.log(entry, "ENTRY");
-      //let data = [];
       const newNames = columnNames.map(name => {
         const ArrayOfStrings = name.split("_");
         // console.log(ArrayOfStrings, "ARRAY OF STRINGS")
@@ -53,7 +39,7 @@ export class List extends React.Component {
       data.push(newNames);
       values.map(entry => data.push(entry));
     }
-    console.log(data, "DATA");
+    // console.log(data, "DATA");
 
     return (
       <div id="example-component">
@@ -77,16 +63,8 @@ export class List extends React.Component {
                 const value = payload.newValue;
                 const newPayload = { [name]: value };
                 this.props.changeCell(payload.row + 1, newPayload);
-                console.log(payload.row + 1, "ID");
-                console.log(newPayload, "Payload");
-                // store.dispatch({
-                //   id: store.getState().changes.length,
-                //   type: 'change',
-                //   row: changes[0][0],
-                //   column: changes[0][1],
-                //   oldValue: changes[0][2],
-                //   newValue: changes[0][3]
-                // });
+                // console.log(payload.row + 1, "ID");
+                // console.log(newPayload, "Payload");
               }
             }
           }}
