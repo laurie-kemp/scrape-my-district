@@ -8,6 +8,6 @@ export default {
   listRed,
   databases,
   currentUser,
-  csv
+  csv,
   updates
 };

@@ -1,4 +1,4 @@
-import { JsonController, Get, Authorized } from 'routing-controllers'
+import { JsonController, Get } from 'routing-controllers'
 import Update from './entity';
 
 @JsonController()
