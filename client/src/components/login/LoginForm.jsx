@@ -1,51 +1,80 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { login } from '../../actions/users'
+import { Redirect } from 'react-router-dom'
+import "../../App.css";
+import Paper from "@material-ui/core/Paper"
+import Button from '@material-ui/core/Button'
+import TextField from "@material-ui/core/TextField"
 
-export default class LoginForm extends PureComponent {
-  state = {};
 
-  handleSubmit = e => {
-    e.preventDefault();
 
-    this.props.onSubmit(this.state);
-  };
+class LoginForm extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: ''
+    }
+  }
 
-  handleChange = event => {
-    const { name, value } = event.target;
+  handleSubmit(event) {
+    event.preventDefault()
+    const { email, password } = this.state
+    this.props.login(email, password)
+  }
 
+  handleChangeEmail = event => {
+    const { name, value } = event.target
     this.setState({
       [name]: value
-    });
-  };
+    })
+  }
+
+  handleChangePassword = event => {
+    const { name, value } = event.target 
+    this.setState({
+      [name]: value
+    })
+  }
 
   render() {
+    if (this.props.currentUser) return <Redirect to="/homepage" />
+    const textField = {
+      width: 300
+    }	
+
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
+      <Paper className="styles" elevation={4}>
+      <h1>Login</h1>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <TextField
+            style={textField}
             type="email"
             name="email"
-            id="email"
-            value={this.state.email || ""}
-            onChange={this.handleChange}
+            value={this.state.email}
+            placeholder="Please enter your email"
+            onChange={this.handleChangeEmail.bind(this)}
           />
-        </div>
-
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
+          <br/>
+          <TextField
+            style={textField}
             type="password"
             name="password"
-            id="password"
-            value={this.state.password || ""}
-            onChange={this.handleChange}
+            value={this.state.password}
+            placeholder="Please enter your password"
+            onChange={this.handleChangePassword.bind(this)}
           />
-        </div>
-
-        <button type="submit">Login</button>
-      </form>
-    );
+          <br/>
+          <Button type="submit" className="loginButton" id="loginButton">
+             submit
+          </Button>
+        </form>
+      </Paper>
+    )
   }
 }
-
-// laurie.kemp@scaleupnation.com  password="Laurie999"
+const mapStateToProps = ({ currentUser }) => {
+  return { currentUser }
+}
+export default connect(mapStateToProps, { login })(LoginForm)
