@@ -10,9 +10,7 @@ class Reports extends Component {
         renderAll: false,
         renderSpecific: false,
         renderSpecificColumn: false,
-        renderOptions: false,
-        renderSpecificUpdates: null,
-        filteredUpdates: null
+        renderOptions: false
     }
 
     componentDidMount() {
@@ -40,17 +38,14 @@ class Reports extends Component {
         this.props.updates.forEach(update => {
             if (update.company === company) filteredByCompany.push(update)
         })
-        this.setState({filtered: filteredByCompany})
-    }
-    
-    renderFilterByColumn = () => {
-        console.log(this.state.column)
+        this.setState({filtered: filteredByCompany, renderSpecific: true})
         if (this.state.column) {
-            const filteredByColumn = this.state.filtered
+            console.log('hello?')
+            const filteredByColumn = filteredByCompany
                 .filter(update => {
                     return update.columnName === this.state.column
             })
-            this.setState({filteredByColumn, renderSpecific: false})
+            this.setState({filtered: filteredByColumn, renderSpecific: true})
         }
     }
 
@@ -65,7 +60,7 @@ class Reports extends Component {
         const companiesWithoutDuplicates = Array.from(new Set(companies))
         const columnsWithoutDuplicates = Array.from(new Set(columns))
 
-        this.setState({companies: companiesWithoutDuplicates, columns: columnsWithoutDuplicates, renderOptions: true, value: companiesWithoutDuplicates[0]})
+        this.setState({companies: companiesWithoutDuplicates, renderOptions: true, columns: columnsWithoutDuplicates, value: companiesWithoutDuplicates[0]})
     }
 
     setRenderAll = () => {
@@ -84,6 +79,7 @@ class Reports extends Component {
         if (e) {
             const value = e.value
             this.setState({column: value});
+            // this.renderSpecificUpdates(this.state.company)
             // this.renderFilterByColumn(value)
         }
     }
@@ -91,7 +87,7 @@ class Reports extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.renderSpecificUpdates(this.state.company)
-        this.renderFilterByColumn(this.state.column)
+        this.renderFilterByColumn()
     }
 
     companyOptionsList = () => {
@@ -116,7 +112,7 @@ class Reports extends Component {
             <div>
                 <button onClick={() => this.setRenderAll()}>Fetch all updates</button>
                 <button onClick={() => this.getSpecificUpdates()}>Get specific updates</button>
-                <button onClick={() => this.setState({})}>Clear search</button>
+                <button onClick={() => this.setState({renderAll: false, renderSpecific: false, filtered: null})}>Clear search</button>
                 {this.state.renderOptions && 
                     <div>
                         <form onSubmit={this.handleSubmit}>
@@ -153,7 +149,7 @@ class Reports extends Component {
                                         )})}
                                     </div>
                                 }
-                                {this.state.renderSpecificColumn && 
+                                {/* {this.state.renderSpecificColumn && 
                                     <div>
                                         {this.state.filteredByColumn && this.state.filteredByColumn.map((update, i) => {
                                         return (
@@ -165,7 +161,7 @@ class Reports extends Component {
                                             </div>
                                         )})}
                                     </div>
-                                }
+                                } */}
                         </div>
                     </div>
                 }
