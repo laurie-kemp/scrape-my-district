@@ -70,25 +70,25 @@ td {
   display: flex; 
   flex-direction: column; 
   padding-bottom: 30px; 
-  width: 20%; 
+  width: 40%; 
   text-align: center; 
-  margin-left: 17em; 
+  margin-left: auto; 
   margin-right: auto; 
   justify-content: center; 
 
 }
 
 .reportsCard {
-  
+  margin-top: 30px;
   color: rgb(12, 2, 2);
   background-color: #f7f7f7 !important;
   display: flex; 
   flex-direction: column; 
   padding-bottom: 30px; 
-  width: 20%; 
+  width: 40%; 
   text-align: center; 
   margin-left: auto; 
-  margin-right: 17em; 
+  margin-right: auto; 
   justify-content: center; 
 
 }

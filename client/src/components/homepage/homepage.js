@@ -20,14 +20,13 @@ class Homepage extends PureComponent {
 
     return (
       <div>
-        <Grid container  spacing={16}>
       <Card className='dataCard'>
         <CardContent>
           <Typography variant="headline" component="h2">
-            Full Database
+          Full Database 
           </Typography>
           <Typography component="p">
-            See or update your Database here<br />
+          See or update your Database here <br />
             {'"uhhh.. it tickles"'}
           </Typography>
         </CardContent>
@@ -35,20 +34,20 @@ class Homepage extends PureComponent {
           <Button size="small" className='dataCardButton' onClick={() => history.push("/list")}>Data</Button>
         </CardActions>
       </Card>
-      </Grid>
+      
 
       <Card className='reportsCard'>
         <CardContent>
           <Typography variant="headline" component="h2">
-            Full Database
+            Reports
           </Typography>
           <Typography component="p">
-            See or update your Database here<br />
-            {'"uhhh.. it tickles"'}
+           Searh for reports on specific company<br />
+            {'"Ups I did it again.."'}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" className='dataCardButton' onClick={() => history.push("/reports")}>Data</Button>
+          <Button size="small" className='dataCardButton' onClick={() => history.push("/reports")}>Reports</Button>
         </CardActions>
       </Card>
     </div>
