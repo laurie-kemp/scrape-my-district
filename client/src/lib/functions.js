@@ -1,3 +1,38 @@
+export const newCompanies = (databases, csv) => {
+  let newCompaniesList = [];
+  let comp = [];
+  let found = false;
+  if (databases) {
+    const dbArray = Object.keys(databases).map(i => databases[i]);
+    console.log(dbArray.length, "LENGTH OF DATABASES");
+    Object.keys(csv).map(company => {
+      comp = Object.keys(databases).map((entry, index) => {
+        // console.log(index, "INDEX");
+        if (databases[entry].venture === csv[company].Name) {
+          //if the company is in the csv AND the excel sheet
+          found = true;
+          // console.log(csv[company].Name, "FOUND IN DATABASES");
+          // return;
+        } else {
+          //this is when the company is not in the excel and we need to add it to new companies
+          // newCompaniesList.push(csv[company]);
+          if (index == dbArray.length - 1 && !found) {
+            newCompaniesList.push(csv[company]);
+            console.log(csv[company], "pushing this");
+          } else {
+            return;
+          }
+        }
+        // if (!found) ;
+        // found = false;
+      });
+      found = false;
+    });
+    // found = false;
+    console.log(newCompaniesList, "NEW COMPANIES");
+  }
+};
+
 export const changes = (databases, csv) => {
   let changes = [];
   let change = [];
@@ -52,7 +87,9 @@ export const changes = (databases, csv) => {
     });
     console.log(changes, "CHANGES");
   }
-  const newChanges = changes.filter(entry => entry[0] && entry[0].LOCATION == "changed");
+  const newChanges = changes.filter(
+    entry => entry[0] && entry[0].LOCATION == "changed"
+  );
   // const newChanges = changes.map(entry => console.log(entry[0], "entry"))
-  console.log(newChanges, "NEW CHANGES")
- };
+  console.log(newChanges, "NEW CHANGES");
+};

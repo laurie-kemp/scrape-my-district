@@ -5,11 +5,13 @@ export default (state = [], action) => {
     case CHANGE_CELL:
       return action.payload.reduce((databases, database) => {
         databases[database.id] = database;
+        databases[database.id].timestamp = database.timestamp.split("T")[0];
         return databases;
       }, {});
     case FETCH_ALL_DATA:
       return action.payload.reduce((databases, database) => {
         databases[database.id] = database;
+        databases[database.id].timestamp = database.timestamp.split("T")[0];
         return databases;
       }, {});
     default:
