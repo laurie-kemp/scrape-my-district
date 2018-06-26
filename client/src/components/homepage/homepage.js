@@ -51,6 +51,7 @@ class Homepage extends PureComponent {
         </CardActions>
       </Card>
     </div>
+
     );
   }
 }

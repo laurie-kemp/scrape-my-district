@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import Papa from "papaparse/papaparse.min.js";
 import { updateCSV } from "../actions/list";
 import { connect } from "react-redux";
+import Button from "@material-ui/core/Button";
+import FileUpload from "@material-ui/icons/FileUpload";
 
 export class FileSelector extends Component {
   state = {
     docs: null,
-    data: null
+    data: null,
+    filename: null
   };
 
   handleChange = selectorFiles => {
@@ -18,6 +21,7 @@ export class FileSelector extends Component {
       skipEmptyLines: true,
       complete: this.updateData
     });
+    this.setState({ filename: selectorFiles[0].name });
   };
 
   updateData = result => {
@@ -32,7 +36,25 @@ export class FileSelector extends Component {
     console.log(this.state.data);
     return (
       <div>
-        <input type="file" onChange={e => this.handleChange(e.target.files)} />
+        {/* <input type="file" onChange={e => this.handleChange(e.target.files)} /> */}
+        <input
+          style={{ display: "none" }}
+          id="contained-button-file"
+          type="file"
+          onChange={e => this.handleChange(e.target.files)}
+        />
+        <label htmlFor="contained-button-file">
+          {this.state.filename}
+          <Button
+            // variant="contained"
+            component="div"
+            // color="primary"
+            className="upload-button"
+          >
+            Upload
+            <FileUpload />
+          </Button>
+        </label>
       </div>
     );
   }

@@ -23,6 +23,10 @@
   font-size: large;
 }
 
+.somebutton {
+  display: none;
+}
+
 /* table tbody tr:first-child {
   font-weight: bold;
   color: greenyellow;
