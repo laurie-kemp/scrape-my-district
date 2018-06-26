@@ -20,6 +20,7 @@ class Homepage extends PureComponent {
 
     return (
       <div>
+
         <Grid container  spacing={16}>
       <Card className='dataCard'>
         <CardContent>
@@ -52,6 +53,7 @@ class Homepage extends PureComponent {
         </CardActions>
       </Card>
     </div>
+
     );
   }
 }
