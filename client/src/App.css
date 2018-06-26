@@ -22,6 +22,10 @@
   font-size: large;
 }
 
+.somebutton {
+  display: none;
+}
+
 /* table tbody tr:first-child {
   font-weight: bold;
   color: greenyellow;
@@ -48,26 +52,25 @@ td {
   font-size: 15px;
 }
 
-.styles { 
-  margin-top: 10em; 
+.styles {
+  margin-top: 10em;
   color: rgb(12, 2, 2);
   background-color: #f7f7f7 !important;
-  display: flex; 
-  flex-direction: column; 
-  padding-bottom: 30px; 
-  width: 50%; 
-  text-align: center; 
-  margin-left: auto; 
-  margin-right: auto; 
-  justify-content: center; 
-} 
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  width: 50%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
 
 .AppBar {
   background-color: #f7f7f7 !important;
 }
- 
-.loginButton { 
-  margin-bottom: 10px !important; 
+
+.loginButton {
+  margin-bottom: 10px !important;
   margin-top: 20px !important;
 }
-
