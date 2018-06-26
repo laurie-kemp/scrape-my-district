@@ -11,12 +11,12 @@ import "../../App.css";
 
 const TopBar = props => {
   const { location, history, user } = props;
-  
+
   return (
-    <AppBar className='AppBar'position="absolute" style={{ zIndex: 10 }}>
+    <AppBar className="AppBar" position="fixed" style={{ zIndex: -1 }}>
       <Toolbar>
         <Typography variant="title" color="inherit" style={{ flex: 1 }}>
-          <img src='scaleupnation-logo.png' className = 'logo'/>
+          <img src="scaleupnation-logo.png" className="logo" />
         </Typography>
         {user && (
           <Button color="inherit">
@@ -25,21 +25,15 @@ const TopBar = props => {
         )}
 
         {location.pathname === "/homepage" && (
-          <Button  onClick={() => history.push("/logout")}>
-            Log out
-          </Button>
+          <Button onClick={() => history.push("/logout")}>Log out</Button>
         )}
 
         {location.pathname === "/list" && (
-          <Button  onClick={() => history.push("/logout")}>
-            Log out
-          </Button>
+          <Button onClick={() => history.push("/logout")}>Log out</Button>
         )}
 
         {location.pathname === "/reports" && (
-          <Button onClick={() => history.push("/logout")}>
-            Log out
-          </Button>
+          <Button onClick={() => history.push("/logout")}>Log out</Button>
         )}
       </Toolbar>
     </AppBar>
@@ -47,11 +41,10 @@ const TopBar = props => {
 };
 
 const mapStateToProps = state => ({
-  user: state.currentUser
-   &&
-  state.users &&
-  state.users[userId(state.currentUser.jwt)]
+  user:
+    state.currentUser &&
+    state.users &&
+    state.users[userId(state.currentUser.jwt)]
 });
 
 export default withRouter(connect(mapStateToProps)(TopBar));
-

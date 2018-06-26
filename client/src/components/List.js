@@ -5,6 +5,7 @@ import { changeCell, fetchAllData, updateData } from "../actions/list";
 import { changes } from "../lib/functions";
 import FileSelector from "./FileSelector";
 import { fetchUpdates, addUpdate } from "../actions/updates";
+import Paper from "@material-ui/core/Paper";
 
 export class List extends React.Component {
   constructor(props) {
@@ -82,6 +83,7 @@ export class List extends React.Component {
               "FTE check complete 1Y/2N",
               "remarks"
             ],
+
             rowHeaders: true,
             contextMenu: true,
             onAfterChange: (listRed, source) => {
@@ -98,8 +100,8 @@ export class List extends React.Component {
                 const newPayload = { [name]: value };
                 this.props.changeCell(payload.row + 1, newPayload);
                 const companyName = databases[payload.row + 1].venture;
-                console.log(companyName, "COMPANY NAME")
-                const date = Date.now()
+                console.log(companyName, "COMPANY NAME");
+                const date = Date.now();
                 const update = {
                   company: companyName,
                   columnName: name,
