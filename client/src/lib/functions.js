@@ -1,3 +1,5 @@
+// import { companiesToAdd } from "../actions/list";
+
 export const newCompanies = (databases, csv) => {
   let newCompaniesList = [];
   let comp = [];
@@ -30,6 +32,8 @@ export const newCompanies = (databases, csv) => {
     });
     // found = false;
     console.log(newCompaniesList, "NEW COMPANIES");
+    // companiesToAdd(newCompaniesList);
+    return newCompaniesList;
   }
 };
 
@@ -76,20 +80,20 @@ export const changes = (databases, csv) => {
         .filter(x => {
           if (x !== true) return x;
         });
-      if (comp.length > 1) {
-        comp.map(entry =>
-          console.log(
-            "multiple entries for " + entry.venture + " with ID: " + entry.id
-          )
-        );
-      }
+      // if (comp.length > 1) {
+      //   comp.map(entry =>
+      //     console.log(
+      //       "multiple entries for " + entry.venture + " with ID: " + entry.id
+      //     )
+      //   );
+      // }
       changes.push(comp);
     });
-    console.log(changes, "CHANGES");
+    // console.log(changes, "CHANGES");
   }
   const newChanges = changes.filter(
     entry => entry[0] && entry[0].LOCATION == "changed"
   );
   // const newChanges = changes.map(entry => console.log(entry[0], "entry"))
-  console.log(newChanges, "NEW CHANGES");
+  // console.log(newChanges, "NEW CHANGES");
 };

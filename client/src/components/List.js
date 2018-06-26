@@ -1,7 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import HotTable from "react-handsontable";
-import { changeCell, fetchAllData, updateData } from "../actions/list";
+import {
+  changeCell,
+  fetchAllData,
+  updateData,
+  companiesToAdd
+} from "../actions/list";
 import { changes, newCompanies } from "../lib/functions";
 import FileSelector from "./FileSelector";
 import { fetchUpdates, addUpdate } from "../actions/updates";
@@ -103,7 +108,7 @@ export class List extends React.Component {
                 const newPayload = { [name]: value };
                 this.props.changeCell(payload.row + 1, newPayload);
                 const companyName = databases[payload.row + 1].venture;
-                console.log(companyName, "COMPANY NAME");
+                // console.log(companyName, "COMPANY NAME");
                 const date = Date.now();
                 const update = {
                   company: companyName,
@@ -129,7 +134,7 @@ const mapStateToProps = ({ listRed, databases, csv }) => ({
   databases,
   csv,
   changes: changes(databases, csv),
-  newCompanies: newCompanies(databases, csv)
+  newCompanies
 });
 
 export default connect(

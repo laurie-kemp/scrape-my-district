@@ -4,9 +4,10 @@ import { baseUrl } from "../constants";
 export const CHANGE_CELL = "CHANGE_CELL";
 export const FETCH_ALL_DATA = "FETCH_ALL_DATA";
 export const UPDATE_CSV = "UPDATE_CSV";
+export const NEW_COMPANIES = "NEW_COMPANIES";
 
 export const updateCSV = payload => {
-  console.log(payload, "THIS IS THE PAYLOAD COMING TO ACTION");
+  // console.log(payload, "THIS IS THE PAYLOAD COMING TO ACTION");
   return {
     type: UPDATE_CSV,
     payload: payload
@@ -50,4 +51,12 @@ export const changeCell = (databaseId, updates) => (dispatch, getState) => {
         payload: response.body.databases
       })
     );
+};
+
+export const companiesToAdd = payload => {
+  console.log(payload, "THIS IS THE NEW COMPANIES COMING TO THE ACTION");
+  return {
+    type: NEW_COMPANIES,
+    payload: payload
+  };
 };
