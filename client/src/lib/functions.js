@@ -1,4 +1,13 @@
 // import { companiesToAdd } from "../actions/list";
+export const csvToDb = company => {
+  return {
+    venture: company.Name,
+    source: "Crunchbase",
+    description_source: company.Info,
+    HQ_source: company.Location,
+    laurie_sector_input: company.Business
+  };
+};
 
 export const newCompanies = (databases, csv) => {
   let newCompaniesList = [];
