@@ -5,6 +5,7 @@
 .logo {
   height: 40px;
   padding: 10px;
+  cursor: pointer;
 }
 
 .App-header {
@@ -84,6 +85,42 @@ td {
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+}
+
+.dataCard {
+  margin-top: 10em; 
+  color: rgb(12, 2, 2);
+  background-color: #f7f7f7 !important;
+  display: flex; 
+  flex-direction: column; 
+  padding-bottom: 30px; 
+  width: 40%; 
+  text-align: center; 
+  margin-left: auto; 
+  margin-right: auto; 
+  justify-content: center; 
+
+}
+
+.reportsCard {
+  margin-top: 30px;
+  color: rgb(12, 2, 2);
+  background-color: #f7f7f7 !important;
+  display: flex; 
+  flex-direction: column; 
+  padding-bottom: 30px; 
+  width: 40%; 
+  text-align: center; 
+  margin-left: auto; 
+  margin-right: auto; 
+  justify-content: center; 
+
+}
+
+.dataCardButton { 
+  margin-bottom: 10px !important; 
+  margin-top: 20px !important;
+  margin-left: 5.5em !important
 }
 
 .AppBar {
