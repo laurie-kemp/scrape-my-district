@@ -65,7 +65,6 @@ export class FileSelector extends Component {
     }
     return (
       <div>
-        {/* <input type="file" onChange={e => this.handleChange(e.target.files)} /> */}
         <input
           style={{ display: "none" }}
           id="contained-button-file"
@@ -74,12 +73,7 @@ export class FileSelector extends Component {
         />
         <label htmlFor="contained-button-file">
           {this.state.filename}
-          <Button
-            // variant="contained"
-            component="div"
-            // color="primary"
-            className="upload-button"
-          >
+          <Button component="div" className="upload-button">
             Upload
             <FileUpload />
           </Button>
