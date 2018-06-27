@@ -1,10 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import HotTable from "react-handsontable";
-import { changeCell, fetchAllData, updateData } from "../actions/list";
-import { changes } from "../lib/functions";
+import {
+  changeCell,
+  fetchAllData,
+  updateData,
+  companiesToAdd
+} from "../actions/list";
+import { changes, newCompanies } from "../lib/functions";
 import FileSelector from "./FileSelector";
 import { fetchUpdates, addUpdate } from "../actions/updates";
+import Paper from "@material-ui/core/Paper";
 
 export class List extends React.Component {
   constructor(props) {
@@ -17,9 +23,10 @@ export class List extends React.Component {
   }
 
   render() {
-    const { listRed, databases, csv, changes } = this.props;
+    const { listRed, databases, csv, changes, newCompanies } = this.props;
     let dbArray = [];
     if (databases) dbArray = Object.keys(databases).map(i => databases[i]);
+
     // console.log(dbArray, "DATABASE ARRAY");
     let columnNames = [];
     if (dbArray[0]) columnNames = Object.keys(dbArray[0]).map(i => i);
@@ -66,24 +73,35 @@ export class List extends React.Component {
               "status",
               "Laurie sector input",
               "sector see list input",
-              "is product service business model tech driven",
+              "is product service<br>business model tech driven",
               "BM focus target clients",
               "business model type",
               "scalable business model",
               "convincing 3P",
               "max employees",
-              "no of employees fte min",
-              "no of employees max fte",
+              "no of employees<br>min fte",
+              "no of employees<br>max fte",
               "total funding raised EUR",
               "last funding type",
               "product in market",
-              "no of funder with entrepreneurial experience",
-              "alive 1Y/2N",
-              "FTE check complete 1Y/2N",
-              "remarks"
+              "no of funder with<br>entrepreneurial experience",
+              "1 non ScaleUp / 2 ScaleUp<br>/ 3 potencial ScaleUp",
+              "alive<br>1Y/2N",
+              "FTE check complete<br>1Y/2N",
+              "remarks",
+              "Added on"
             ],
+            stretchH: "all",
+            width: 1500,
+            autoWrapRow: true,
+            height: 1000,
             rowHeaders: true,
+            filters: true,
+            columnSorting: true,
+            sortIndicator: true,
             contextMenu: true,
+            manualRowResize: true,
+            manualColumnResize: true,
             onAfterChange: (listRed, source) => {
               if (source !== "loadData") {
                 let payload = {
@@ -98,8 +116,8 @@ export class List extends React.Component {
                 const newPayload = { [name]: value };
                 this.props.changeCell(payload.row + 1, newPayload);
                 const companyName = databases[payload.row + 1].venture;
-                console.log(companyName, "COMPANY NAME")
-                const date = Date.now()
+                // console.log(companyName, "COMPANY NAME");
+                const date = Date.now();
                 const update = {
                   company: companyName,
                   columnName: name,
@@ -123,7 +141,8 @@ const mapStateToProps = ({ listRed, databases, csv }) => ({
   listRed,
   databases,
   csv,
-  changes: changes(databases, csv)
+  changes: changes(databases, csv),
+  newCompanies
 });
 
 export default connect(

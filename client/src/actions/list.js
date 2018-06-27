@@ -1,12 +1,14 @@
 import * as request from "superagent";
 import { baseUrl } from "../constants";
+import { csvToDb } from "../lib/functions";
 
 export const CHANGE_CELL = "CHANGE_CELL";
 export const FETCH_ALL_DATA = "FETCH_ALL_DATA";
 export const UPDATE_CSV = "UPDATE_CSV";
+export const NEW_COMPANIES = "NEW_COMPANIES";
 
 export const updateCSV = payload => {
-  console.log(payload, "THIS IS THE PAYLOAD COMING TO ACTION");
+  // console.log(payload, "THIS IS THE PAYLOAD COMING TO ACTION");
   return {
     type: UPDATE_CSV,
     payload: payload
@@ -51,3 +53,31 @@ export const changeCell = (databaseId, updates) => (dispatch, getState) => {
       })
     );
 };
+
+export const companiesToAdd = payload => dispatch => {
+  Object.keys(payload).map(company => {
+    console.log(company, "THIS IS IN ACTION CREATOR");
+    const companyToAdd = csvToDb(payload[company]);
+    request
+      .post(`${baseUrl}/databases`)
+      //.set("Authorization", `Bearer ${jwt}`)
+      .send(companyToAdd)
+      .then(response => {
+        dispatch({
+          type: NEW_COMPANIES,
+          payload: response.entity
+        });
+      })
+      .catch(err => alert(err));
+  });
+  // console.log(payload, "THIS IS THE NEW COMPANIES COMING TO THE ACTION");
+  // return {
+  //   type: NEW_COMPANIES,
+  //   payload: payload
+  // };
+};
+
+// export const addCompany = company => {
+//   const companyToAdd = csvToDb(company);
+
+// };

@@ -6,40 +6,36 @@ import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router";
 import { userId } from "../../jwt";
 import { connect } from "react-redux";
-import AccountIcon from "@material-ui/icons/AccountBox";
+//import IconButton from '@material-ui/core/IconButton';
+//import AccountCircle from '@material-ui/icons/AccountCircle';
+//import AccountIcon from "@material-ui/icons/AccountBox";
 import "../../App.css";
 
 const TopBar = props => {
-  const { location, history, user } = props;
-  
+  const { location, history } = props;
+
   return (
-    <AppBar className='AppBar'position="absolute" style={{ zIndex: 10 }}>
+    <AppBar className="AppBar" position="fixed" style={{ zIndex: -1 }}>
       <Toolbar>
-        <Typography variant="title" color="inherit" style={{ flex: 1 }}>
-          <img src='scaleupnation-logo.png' className = 'logo'/>
+        <Typography
+          variant="title"
+          color="inherit"
+          style={{ flex: 1 }}
+          onClick={() => history.push("/homepage")}
+        >
+          <img src="scaleupnation-logo.png" alt="" className="logo" />
         </Typography>
-        {user && (
-          <Button color="inherit">
-            <AccountIcon />
-          </Button>
-        )}
 
         {location.pathname === "/homepage" && (
-          <Button  onClick={() => history.push("/logout")}>
-            Log out
-          </Button>
+          <Button onClick={() => history.push("/logout")}>Log out</Button>
         )}
 
         {location.pathname === "/list" && (
-          <Button  onClick={() => history.push("/logout")}>
-            Log out
-          </Button>
+          <Button onClick={() => history.push("/logout")}>Log out</Button>
         )}
 
         {location.pathname === "/reports" && (
-          <Button onClick={() => history.push("/logout")}>
-            Log out
-          </Button>
+          <Button onClick={() => history.push("/logout")}>Log out</Button>
         )}
       </Toolbar>
     </AppBar>
@@ -47,11 +43,10 @@ const TopBar = props => {
 };
 
 const mapStateToProps = state => ({
-  user: state.currentUser
-   &&
-  state.users &&
-  state.users[userId(state.currentUser.jwt)]
+  user:
+    state.currentUser &&
+    state.users &&
+    state.users[userId(state.currentUser.jwt)]
 });
 
 export default withRouter(connect(mapStateToProps)(TopBar));
-
