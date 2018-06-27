@@ -78,9 +78,14 @@ class TopCompanies extends Component {
 
   calcPercentages = () => {
     const { companyData } = this.state;
-    console.log(companyData[0].change)
-    const percentage = (Number(companyData[companyData.length-1].change) / Number(companyData[0].change)) * 100
-    console.log(percentage)
+    let percentages = []
+    companyData.forEach(company => {
+      const value = Object.values(company)
+      console.log(value[0][0].change)
+      percentages.push({[value[0][0].company]: (Number(value[0][value[0].length-1].change) / Number(value[0][0].change)) * 100})
+    })
+
+    console.log(percentages)
   }
 
   render() {
