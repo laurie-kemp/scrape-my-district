@@ -55,7 +55,7 @@ export const changeCell = (databaseId, updates) => (dispatch, getState) => {
 };
 
 export const companiesToAdd = payload => dispatch => {
-  Object.keys(payload).map(company => {
+  Object.keys(payload).map((company,index) => {
     console.log(company, "THIS IS IN ACTION CREATOR");
     const companyToAdd = csvToDb(payload[company]);
     request
@@ -65,7 +65,7 @@ export const companiesToAdd = payload => dispatch => {
       .then(response => {
         dispatch({
           type: NEW_COMPANIES,
-          payload: response.entity
+          payload: JSON.parse(response.text).entity
         });
       })
       .catch(err => alert(err));

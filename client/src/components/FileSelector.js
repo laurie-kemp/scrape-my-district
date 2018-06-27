@@ -85,8 +85,7 @@ export class FileSelector extends Component {
 
 const mapStateToProps = ({ databases, csv }) => ({
   databases,
-  csv,
-  newCompanies
+  csv
 });
 
 export default connect(

@@ -15,7 +15,7 @@ export const newCompanies = (databases, csv) => {
   let found = false;
   if (databases) {
     const dbArray = Object.keys(databases).map(i => databases[i]);
-    console.log(dbArray.length, "LENGTH OF DATABASES");
+    // console.log(dbArray.length, "LENGTH OF DATABASES");
     Object.keys(csv).map(company => {
       comp = Object.keys(databases).map((entry, index) => {
         // console.log(index, "INDEX");
@@ -29,7 +29,7 @@ export const newCompanies = (databases, csv) => {
           // newCompaniesList.push(csv[company]);
           if (index == dbArray.length - 1 && !found) {
             newCompaniesList.push(csv[company]);
-            console.log(csv[company], "pushing this");
+            // console.log(csv[company], "pushing this");
           } else {
             return;
           }
@@ -40,7 +40,7 @@ export const newCompanies = (databases, csv) => {
       found = false;
     });
     // found = false;
-    console.log(newCompaniesList, "NEW COMPANIES");
+    // console.log(newCompaniesList, "NEW COMPANIES");
     // companiesToAdd(newCompaniesList);
     return newCompaniesList;
   }
@@ -104,5 +104,5 @@ export const changes = (databases, csv) => {
     entry => entry[0] && entry[0].LOCATION == "changed"
   );
   // const newChanges = changes.map(entry => console.log(entry[0], "entry"))
-  // console.log(newChanges, "NEW CHANGES");
+  console.log(newChanges, "NEW CHANGES");
 };
