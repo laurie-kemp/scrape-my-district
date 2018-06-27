@@ -14,11 +14,12 @@ export default (state = [], action) => {
         databases[database.id].timestamp = database.timestamp.split("T")[0];
         return databases;
       }, {});
-      // case NEW_COMPANIES:
-      //   return {
-      //     ...state,
-      //     [action.payload.id]: action.payload
-      //   } 
+      case NEW_COMPANIES:
+        console.log(action.payload, "PAYLOAD IN REDUCER")
+        return {
+          ...state,
+          [action.payload.id]: action.payload
+        } 
 
     default:
       return state;

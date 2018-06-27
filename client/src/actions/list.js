@@ -57,22 +57,23 @@ export const changeCell = (databaseId, updates) => (dispatch, getState) => {
 export const companiesToAdd = payload => dispatch => {
   Object.keys(payload).map(company => {
     // console.log(company, "THIS IS IN ACTION CREATOR");
-    setTimeout(300)
     console.log("ITERATION NUMBER: ", company)
     const companyToAdd = csvToDb(payload[company]);
     console.log(companyToAdd, "COMPANY TO ADD")
+    if(company == payload.length-1){
     request
       .post(`${baseUrl}/databases`)
       //.set("Authorization", `Bearer ${jwt}`)
       .send(companyToAdd)
       .then(response => {
+        console.log(response,"RESPONSE")
         dispatch({
           type: NEW_COMPANIES,
-          payload: JSON.parse(response.text).entity
-        });
+          payload: response.body.entity
+        })
       })
-      .catch(err => alert(err));
-  });
+      .catch(err => console.log(err));
+  }});
   // console.log(payload, "THIS IS THE NEW COMPANIES COMING TO THE ACTION");
   // return {
   //   type: NEW_COMPANIES,
