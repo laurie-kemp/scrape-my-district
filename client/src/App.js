@@ -8,6 +8,7 @@ import Reports from "./components/reports/Reportspage";
 import TopBar from "./components/layout/TopBar";
 import Homepage from "./components/homepage/homepage.js";
 import LogoutPage from "./components/logout/LogoutPage";
+import TopCompanies from "./components/topcompanies/TopCompanies";
 
 
 
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/homepage" component={Homepage} />
             <Route exact path="/list" component={List} />
             <Route exact path="/reports" component={Reports} />
+            <Route exact path="/top" component={TopCompanies} />
             <Route exact path="/fileselector" component={FileSelector} />
             <Route exact path="/" render={() => <Redirect to="/login" />} />
           </main>
