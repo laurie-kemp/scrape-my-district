@@ -13,16 +13,18 @@ import "../../App.css";
 
 const TopBar = props => {
   const { location, history } = props;
-  
-  return (
-    <AppBar className='AppBar'position="fixed" style={{ zIndex: 10 }}>
-      <Toolbar>
-        <Typography variant="title" color="inherit" style={{ flex: 1 }} onClick={() => history.push("/homepage")}>
-          <img src='scaleupnation-logo.png' alt='' className = 'logo'/>
-        </Typography>
 
-       
-       
+  return (
+    <AppBar className="AppBar" position="fixed" style={{ zIndex: -1 }}>
+      <Toolbar>
+        <Typography
+          variant="title"
+          color="inherit"
+          style={{ flex: 1 }}
+          onClick={() => history.push("/homepage")}
+        >
+          <img src="scaleupnation-logo.png" alt="" className="logo" />
+        </Typography>
 
         {location.pathname === "/homepage" && (
           <Button onClick={() => history.push("/logout")}>Log out</Button>

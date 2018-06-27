@@ -17,7 +17,8 @@ const theme = createMuiTheme({
     MuiButton: {
       root: {
         background: "#12a300",
-        color: "white"
+        color: "white",
+        margin: "10px"
       }
       // input: {
       //   display: "none"
