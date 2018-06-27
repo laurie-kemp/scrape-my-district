@@ -7,7 +7,7 @@ import {
   updateData,
   companiesToAdd
 } from "../actions/list";
-import { changes, newCompanies } from "../lib/functions";
+import { changes, newComp } from "../lib/functions";
 import FileSelector from "./FileSelector";
 import { fetchUpdates, addUpdate } from "../actions/updates";
 import Paper from "@material-ui/core/Paper";
@@ -23,7 +23,8 @@ export class List extends React.Component {
   }
 
   render() {
-    const { listRed, databases, csv, changes, newCompanies } = this.props;
+    const { listRed, databases, csv, changes } = this.props;
+    
     let dbArray = [];
     if (databases) dbArray = Object.keys(databases).map(i => databases[i]);
 
@@ -123,7 +124,7 @@ export class List extends React.Component {
                   columnName: name,
                   change: value
                 };
-                this.props.addUpdate(update);
+                // this.props.addUpdate(update);
                 // console.log(databases[payload.id].venture, "COMPANY");
                 console.log(update, "UPDATE GOING TO DB");
                 // console.log(payload.row + 1, "ID");
@@ -137,7 +138,7 @@ export class List extends React.Component {
   }
 }
 
-const mapStateToProps = ({ listRed, databases, csv }) => ({
+const mapStateToProps = ({ listRed, databases, csv, newCompanies }) => ({
   listRed,
   databases,
   csv,

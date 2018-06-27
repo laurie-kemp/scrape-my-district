@@ -9,7 +9,7 @@ export const csvToDb = company => {
   };
 };
 
-export const newCompanies = (databases, csv) => {
+export const newComp = (databases, csv) => {
   let newCompaniesList = [];
   let comp = [];
   let found = false;
@@ -41,6 +41,19 @@ export const newCompanies = (databases, csv) => {
     });
     // found = false;
     // console.log(newCompaniesList, "NEW COMPANIES");
+    let stringToPrint = ""
+    if (newCompaniesList.length > 0){
+      newCompaniesList.map(company => {
+        console.log(company.Name)
+        stringToPrint += " "
+        stringToPrint += company.Name
+      })
+      // console.log(newList)
+      // let outputstring = ""
+      // newList.map(company => {outputstring + " " + company})
+      // alert(newList[0], " were added to your working sheet")
+    }
+    // alert(stringToPrint += " were added to your working sheet!")
     // companiesToAdd(newCompaniesList);
     return newCompaniesList;
   }
@@ -105,4 +118,5 @@ export const changes = (databases, csv) => {
   );
   // const newChanges = changes.map(entry => console.log(entry[0], "entry"))
   console.log(newChanges, "NEW CHANGES");
+  return newChanges
 };
