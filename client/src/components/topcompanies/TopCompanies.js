@@ -85,13 +85,10 @@ class TopCompanies extends Component {
       percentages.push({[value[0][0].company]: (Number(value[0][value[0].length-1].change) / Number(value[0][0].change)) * 100})
     })
 
-    console.log(percentages)
+    this.setState({percentages})
   }
 
   render() {
-    // if (this.state.filteredUpdates) {
-    //   this.calcPercentage()
-    // }
     console.log(this.state)
     return (
       <div>
