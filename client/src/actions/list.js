@@ -69,7 +69,7 @@ export const companiesToAdd = payload => dispatch => {
         console.log(response,"RESPONSE")
         dispatch({
           type: NEW_COMPANIES,
-          payload: response.body.entity
+          payload: response.body.databases
         })
       })
       .catch(err => console.log(err));

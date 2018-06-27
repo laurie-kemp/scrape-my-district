@@ -15,11 +15,11 @@ export default (state = [], action) => {
         return databases;
       }, {});
       case NEW_COMPANIES:
-        console.log(action.payload, "PAYLOAD IN REDUCER")
-        return {
-          ...state,
-          [action.payload.id]: action.payload
-        } 
+        return action.payload.reduce((databases, database) => {
+          databases[database.id] = database;
+          databases[database.id].timestamp = database.timestamp.split("T")[0];
+          return databases;
+        }, {});
 
     default:
       return state;
