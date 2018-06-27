@@ -24,7 +24,38 @@ export class List extends React.Component {
 
   render() {
     const { listRed, databases, csv, changes } = this.props;
-    
+    let ChangesfromCSV = []
+    if(changes) {
+      console.log(changes, "CHANGES")
+      ChangesfromCSV = Object.keys(changes).map(i => changes[i]);
+      ChangesfromCSV.map(change => {
+        console.log(change[0])
+        // const update = {
+        //   company: change[0].venture,
+        //   columnName: "HQ_source",
+        //   change: change[0].csv_location
+        // };
+        const dbupdate = {
+          HQ_source: change[0].csv_location
+        }
+        // this.props.addUpdate(update)
+        this.props.changeCell(change[0].id, dbupdate)
+        // this.props.addUpdate(update)
+      })
+
+      // ChangesfromCSV.map(change => {
+      //   console.log(change[0])
+      //   const update = {
+      //     company: change[0].venture,
+      //     columnName: "HQ_source",
+      //     change: change[0].csv_location
+      //   };
+      //   this.props.addUpdate(update)
+      // })
+
+
+
+    }
     let dbArray = [];
     if (databases) dbArray = Object.keys(databases).map(i => databases[i]);
 
@@ -124,7 +155,7 @@ export class List extends React.Component {
                   columnName: name,
                   change: value
                 };
-                // this.props.addUpdate(update);
+                this.props.addUpdate(update);
                 // console.log(databases[payload.id].venture, "COMPANY");
                 console.log(update, "UPDATE GOING TO DB");
                 // console.log(payload.row + 1, "ID");

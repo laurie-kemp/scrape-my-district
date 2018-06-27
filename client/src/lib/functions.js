@@ -117,6 +117,6 @@ export const changes = (databases, csv) => {
     entry => entry[0] && entry[0].LOCATION == "changed"
   );
   // const newChanges = changes.map(entry => console.log(entry[0], "entry"))
-  console.log(newChanges, "NEW CHANGES");
+  // console.log(newChanges, "NEW CHANGES");
   return newChanges
 };
