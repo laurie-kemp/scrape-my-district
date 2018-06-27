@@ -1,6 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column
+  //UpdateDateColumn
+} from "typeorm";
 import { BaseEntity } from "typeorm/repository/BaseEntity";
-import { IsString, IsOptional } from "class-validator";
+import { IsOptional, IsString } from "class-validator";
 
 @Entity("databases")
 export default class Database extends BaseEntity {
@@ -113,8 +118,7 @@ export default class Database extends BaseEntity {
   @Column("timestamp", {
     precision: 3,
     default: () => "CURRENT_TIMESTAMP",
-    nullable: true,
-    onUpdate: "CURRENT_TIMESTAMP"
+    nullable: true
   })
   timestamp: Date;
 }
