@@ -79,21 +79,42 @@ class TopCompanies extends Component {
   calcPercentages = () => {
     const { companyData } = this.state;
     let percentages = []
+    let completeValues = []
     companyData.forEach(company => {
       const value = Object.values(company)
-      console.log(value[0][0].change)
+      console.log(value)
       percentages.push({[value[0][0].company]: (Number(value[0][value[0].length-1].change) / Number(value[0][0].change)) * 100})
+      let values = []
+      value[0].forEach(companyObject => {
+        completeValues = [...completeValues, {[companyObject.company]: Number(companyObject.change)}]
+      })
     })
-
+    console.log(completeValues)
     this.setState({percentages})
   }
 
+  getChangeValues = () => {
+
+    this.state.companyData.map(company => {
+
+    })
+  }
+
   render() {
+    console.log(this.props)
     console.log(this.state)
     return (
       <div>
         <button onClick={() => this.filterByYear()}>Filter</button>
         <button onClick={() => this.calcPercentages()}>Percentage</button>
+        <div>
+          {this.state.percentages && this.state.percentages.map(value => (
+            <div key={`${Object.keys(value)}`}>
+              <h3>{`Company: ${Object.keys(value)}`}</h3>
+              <h3>{`${Object.values(value)}%`}</h3>
+            </div>
+          ))}
+        </div>
       </div>
     )
   }
