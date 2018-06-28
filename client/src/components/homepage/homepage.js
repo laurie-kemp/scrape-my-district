@@ -51,6 +51,21 @@ class Homepage extends PureComponent {
           <Button size="small" className='dataCardButton' onClick={() => history.push("/reports")}>Reports</Button>
         </CardActions>
       </Card>
+
+      <Card className='reportsCard'>
+        <CardContent>
+          <Typography variant="headline" component="h2">
+            Top companies
+          </Typography>
+          <Typography component="p">
+          See here the Top companies based on FTE growth<br />
+            {'"Arriba Arribaaa!!"'}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small" className='dataCardButton' onClick={() => history.push("/top")}>Top</Button>
+        </CardActions>
+      </Card>
       
     </div>
 
