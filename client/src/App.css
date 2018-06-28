@@ -141,3 +141,21 @@ td {
   z-index: 1;
   /* margin-top: 20px; */
 }
+
+.topHeaderFte {
+  text-align: right !important;
+  font-size: 150% !important;
+}
+
+.topHeaderCompany {
+  font-size: 150% !important;
+}
+
+.topContent {
+  font-size: 100% !important;
+}
+
+.topTitle {
+  font-size: 230% !important;
+  margin-bottom: 30px !important;
+}

@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 import { fetchUpdates } from '../../actions/updates';
 import { Redirect } from 'react-router-dom'
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import "../../App.css";
+
 //import Paper from "@material-ui/core/Paper"
 
 class TopCompanies extends Component {
@@ -83,12 +92,31 @@ class TopCompanies extends Component {
     return (
       <div>
         <Card className='dataCard'>
-          {this.state.percentages && this.state.percentages.map(value => (
-            <div key={`${Object.keys(value)}`}>
-              <h3>{`Company: ${Object.keys(value)}`}</h3>
-              <h3>{`${Object.values(value)}%`}</h3>
-            </div>
-          ))}
+        <CardContent>
+          <Typography className="topTitle" variant="headline" component="h2" color='primary'>
+          Top Companies
+          </Typography>
+         
+          <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell className= "topHeaderCompany">Company Name</TableCell>
+            <TableCell className= "topHeaderFte">FTE % growth</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        {this.state.percentages && this.state.percentages.map(value => (
+              <TableRow  key={`${Object.keys(value)}`}>
+                <TableCell className="topContent" component="th" scope="row">
+                  {Object.keys(value)}
+                </TableCell>
+                <TableCell className="topContent" numeric>{Math.round(Object.values(value))}</TableCell>
+              </TableRow>
+            )
+          )}
+        </TableBody>
+      </Table>
+          </CardContent>
         </Card>
       </div>
     )
@@ -101,3 +129,14 @@ const mapStateToProps = state => {
   }
 }
 export default connect(mapStateToProps, {fetchUpdates})(TopCompanies)
+
+
+
+
+
+/* {this.state.percentages && this.state.percentages.map(value => (
+  <div key={`${Object.keys(value)}`}>
+    <h3>{`Company: ${Object.keys(value)}`}</h3>
+    <h3>{`${Object.values(value)}%`}</h3>
+  </div>
+))} */
