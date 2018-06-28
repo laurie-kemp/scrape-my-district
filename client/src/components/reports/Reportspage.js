@@ -175,7 +175,7 @@ class Reports extends Component {
             <div>
               {this.state.renderSpecific && (
                 <div>
-                  {this.state.column && this.state.company && this.state.plotGraph &&
+                  {this.state.column && this.state.company && this.state.filtered.length > 0 && this.state.plotGraph &&
                     <Graph data={this.state.filtered} />
                   }
                   {this.state.filtered &&

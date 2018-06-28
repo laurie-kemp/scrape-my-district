@@ -98,14 +98,17 @@ class Graph extends Component {
               width={600}
               height={300}
             >
-              {/* <VictoryAxis
-                tickValues={[1, 2, 3, 4]}
-                tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-              />
               <VictoryAxis
-                dependentAxis
-                tickFormat={(x) => (`$${x / 1000}k`)}
-              /> */}
+                  dependentAxis
+                  label={data.columnName && data[0].columnName}
+                  style={{tickLabels: {padding: 25}}}
+                />
+              <VictoryAxis
+                crossAxis
+                label="Date"
+                style={{axisLabel :{padding: 30}, tickLabels: {fontSize: 8}}}
+                tickFormat={(x) => (x.substring(0,10))}
+              />
               <VictoryLine
                 interpolation="natural"
                 data={sortedData}
@@ -119,14 +122,17 @@ class Graph extends Component {
               width={600}
               height={300}
             >
-              {/* <VictoryAxis
-                tickValues={[1, 2, 3, 4]}
-                tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-              />
               <VictoryAxis
-                dependentAxis
-                tickFormat={(x) => (`$${x / 1000}k`)}
-              /> */}
+                  dependentAxis
+                  label={data.columnName && data[0].columnName}
+                  style={{tickLabels: {padding: 25}}}
+                />
+              <VictoryAxis
+                crossAxis
+                label="Date"
+                style={{axisLabel :{padding: 30}, tickLabels: {fontSize: 8}}}
+                tickFormat={(x) => (x.substring(0,10))}
+              />
               <VictoryBar
                 interpolation="natural"
                 data={sortedData}
@@ -140,14 +146,17 @@ class Graph extends Component {
               width={600}
               height={300}
             >
-              {/* <VictoryAxis
-                tickValues={[1, 2, 3, 4]}
-                tickFormat={["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"]}
-              />
               <VictoryAxis
-                dependentAxis
-                tickFormat={(x) => (`$${x / 1000}k`)}
-              /> */}
+                  dependentAxis
+                  label={data.columnName && data[0].columnName}
+                  style={{tickLabels: {padding: 25}}}
+                />
+              <VictoryAxis
+                crossAxis
+                label="Date"
+                style={{axisLabel :{padding: 30}, tickLabels: {fontSize: 8}}}
+                tickFormat={(x) => (x.substring(0,10))}
+              />
               <VictoryScatter
                 interpolation="natural"
                 data={sortedData}
