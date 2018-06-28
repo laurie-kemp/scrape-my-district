@@ -40,7 +40,7 @@ class TopCompanies extends Component {
         companies.push(update.company)
     })
     const companiesWithoutDuplicates = Array.from(new Set(companies))
-    const fte = filteredUpdates.filter(update => update.columnName === 'fte')
+    const fte = filteredUpdates.filter(update => update.columnName === 'no_of_employees_max_fte')
     let companyData = []
     companiesWithoutDuplicates.forEach(company => {
       let data = []
