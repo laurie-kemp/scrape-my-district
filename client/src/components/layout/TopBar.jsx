@@ -37,6 +37,10 @@ const TopBar = props => {
         {location.pathname === "/reports" && (
           <Button onClick={() => history.push("/logout")}>Log out</Button>
         )}
+
+        {location.pathname === "/top" && (
+          <Button onClick={() => history.push("/logout")}>Log out</Button>
+        )}
       </Toolbar>
     </AppBar>
   );

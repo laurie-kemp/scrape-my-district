@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchUpdates } from '../../actions/updates';
-
 class TopCompanies extends Component {
-
   state = {
     yearBack: null,
     filteredUpdates: null,
     percentages: null,
   }
-
   calcYearBack = () => {
     const currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'-');
     const deconstructedDate = currentDate.split('-')
@@ -18,7 +15,6 @@ class TopCompanies extends Component {
     const yearBack = deconstructedDate.join('-')
     this.setState({yearBack: Date.parse(yearBack)})
   }
-
   calcQuarterBack = () => {
     const currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'-');
     const deconstructedDate = currentDate.split('-')
@@ -38,17 +34,14 @@ class TopCompanies extends Component {
     const quarterBack = deconstructedDate.join('-')
     this.setState({quarterBack: Date.parse(quarterBack)})
   }
-
   // componentWillMount() {
   //   this.props.fetchUpdates()
   // }
-
   componentDidMount() {
     this.calcYearBack()
     // this.filterByYear()
     this.props.fetchUpdates()
   }
-
   filterByYear = () => {
     // this.props.fetchUpdates()
     // if (this.props.updates) {
@@ -62,7 +55,6 @@ class TopCompanies extends Component {
       this.divideCompanies(filteredUpdates)
     // }
   }
-
   divideCompanies = (filteredUpdates) => {
     let companies = []
     filteredUpdates.map(update => {
@@ -78,14 +70,12 @@ class TopCompanies extends Component {
           data.push(update)
         }
       })
-
       if (data.length > 1)
       companyData = [...companyData, {[company]: [...data]}]
     })
     // this.setState({companyData})
     this.calcPercentages(companyData)
   }
-
   calcPercentages = (companyData) => {
     // const { companyData } = this.state;
     let percentages = []
@@ -99,10 +89,25 @@ class TopCompanies extends Component {
         completeValues = [...completeValues, {[companyObject.company]: Number(companyObject.change)}]
       })
     })
-    console.log(completeValues)
+    const dynamicSort = (property) => {
+      var sortOrder = 1;
+      if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+      }
+      console.log(property)
+      return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+      }
+    }
+    dynamicSort(percentages)
+    // console.log(percentages.sort((a, b) => {
+      
+    //   b.Apple - a.Microsoft
+    // }))
     this.setState({percentages})
   }
-
   render() {
     if (this.props.updates.length > 0 && !this.state.percentages) {
       this.filterByYear()
@@ -125,11 +130,9 @@ class TopCompanies extends Component {
     )
   }
 }
-
 const mapStateToProps = state => {
   return {
     updates: state.updates
   }
 }
-
 export default connect(mapStateToProps, {fetchUpdates})(TopCompanies)
