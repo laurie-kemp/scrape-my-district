@@ -153,7 +153,7 @@ class Reports extends Component {
         {this.state.renderOptions && (
           <div>
             <form onSubmit={this.handleSubmit}>
-              <label>Change reports on specific companies</label>
+              <label>Display reports on specific companies</label>
               <Select
                 name="form-field-name"
                 value={this.state.company}

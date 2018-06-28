@@ -26,8 +26,7 @@ class Homepage extends PureComponent {
           Full Database 
           </Typography>
           <Typography component="p">
-          See or update your Database here <br />
-            {'"uhhh.. it tickles"'}
+          See or update your Database here
           </Typography>
         </CardContent>
         <CardActions>
@@ -42,8 +41,7 @@ class Homepage extends PureComponent {
             Reports
           </Typography>
           <Typography component="p">
-           Searh for reports on specific company<br />
-            {'"Ups I did it again.."'}
+           Searh for reports on specific company
           </Typography>
         </CardContent>
         <CardActions>
@@ -57,8 +55,7 @@ class Homepage extends PureComponent {
             Top companies
           </Typography>
           <Typography component="p">
-          See here the Top companies based on FTE growth<br />
-            {'"Arriba Arribaaa!!"'}
+          See here the Top companies based on FTE growth
           </Typography>
         </CardContent>
         <CardActions>
