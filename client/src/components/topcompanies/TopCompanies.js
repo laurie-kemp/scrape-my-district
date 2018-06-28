@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchUpdates } from '../../actions/updates';
+import { Redirect } from 'react-router-dom'
 
 class TopCompanies extends Component {
 
@@ -19,53 +20,25 @@ class TopCompanies extends Component {
     this.setState({yearBack: Date.parse(yearBack)})
   }
 
-  calcQuarterBack = () => {
-    const currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'-');
-    const deconstructedDate = currentDate.split('-')
-    let quarterCount = Number(deconstructedDate[1]) - 3
-    if (quarterCount === 0) {
-      quarterCount = 12
-      deconstructedDate[1] = quarterCount.toString()
-    } else if (quarterCount === -1) {
-      quarterCount = 11
-      deconstructedDate[1] = quarterCount.toString()
-    } else if (quarterCount === -2) {
-      quarterCount = 10
-      deconstructedDate[1] = quarterCount.toString()
-    } else {
-      deconstructedDate[1] = quarterCount.toString()
-    }
-    const quarterBack = deconstructedDate.join('-')
-    this.setState({quarterBack: Date.parse(quarterBack)})
-  }
-
-  // componentWillMount() {
-  //   this.props.fetchUpdates()
-  // }
-
   componentDidMount() {
     this.calcYearBack()
-    // this.filterByYear()
     this.props.fetchUpdates()
   }
 
   filterByYear = () => {
-    // this.props.fetchUpdates()
-    // if (this.props.updates) {
-      const { updates } = this.props;
-      let filteredUpdates = []
-      updates.forEach(update => {
-        if (Date.parse(update.timestamp) > this.state.yearBack) {
-          filteredUpdates.push(update)
-        }
-      })
-      this.divideCompanies(filteredUpdates)
-    // }
+    const { updates } = this.props;
+    let filteredUpdates = []
+    updates.forEach(update => {
+      if (Date.parse(update.timestamp) > this.state.yearBack) {
+        filteredUpdates.push(update)
+      }
+    })
+    this.divideCompanies(filteredUpdates)
   }
 
   divideCompanies = (filteredUpdates) => {
     let companies = []
-    filteredUpdates.map(update => {
+    filteredUpdates.forEach(update => {
         companies.push(update.company)
     })
     const companiesWithoutDuplicates = Array.from(new Set(companies))
@@ -82,37 +55,38 @@ class TopCompanies extends Component {
       if (data.length > 1)
       companyData = [...companyData, {[company]: [...data]}]
     })
-    // this.setState({companyData})
     this.calcPercentages(companyData)
   }
 
   calcPercentages = (companyData) => {
-    // const { companyData } = this.state;
     let percentages = []
     let completeValues = []
     companyData.forEach(company => {
       const value = Object.values(company)
-      console.log(value)
       percentages.push({[value[0][0].company]: (Number(value[0][value[0].length-1].change) / Number(value[0][0].change)) * 100})
-      let values = []
       value[0].forEach(companyObject => {
         completeValues = [...completeValues, {[companyObject.company]: Number(companyObject.change)}]
       })
     })
-    console.log(completeValues)
+
+    percentages.sort((a, b) => Object.values(b)[0] - Object.values(a)[0])
+
+    if (percentages.length > 10) {
+      percentages.slice(percentages.length - 10, percentages.length)
+    }
+
     this.setState({percentages})
+
   }
 
   render() {
+    if (!this.props.currentUser) return <Redirect to="/login" />
+
     if (this.props.updates.length > 0 && !this.state.percentages) {
       this.filterByYear()
     }
-    console.log(this.props)
-    console.log(this.state)
     return (
       <div>
-        <button onClick={() => this.filterByYear()}>Filter</button>
-        {/* <button onClick={() => this.calcPercentages()}>Percentage</button> */}
         <div>
           {this.state.percentages && this.state.percentages.map(value => (
             <div key={`${Object.keys(value)}`}>
@@ -128,7 +102,8 @@ class TopCompanies extends Component {
 
 const mapStateToProps = state => {
   return {
-    updates: state.updates
+    updates: state.updates,
+    currentUser: state.currentUser
   }
 }
 
