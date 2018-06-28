@@ -4,6 +4,8 @@ import { fetchUpdates } from "../../actions/updates";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import Button from "@material-ui/core/Button";
+import Graph from "./Graph";
+import { Checkbox } from "@material-ui/core";
 
 class Reports extends Component {
   state = {
@@ -69,7 +71,8 @@ class Reports extends Component {
       companies: companiesWithoutDuplicates,
       renderOptions: true,
       columns: columnsWithoutDuplicates,
-      value: companiesWithoutDuplicates[0]
+      value: companiesWithoutDuplicates[0],
+      plotGraph: false
     });
   };
 
@@ -92,6 +95,15 @@ class Reports extends Component {
       this.setState({ column: value });
     } else {
       this.setState({ column: "" });
+    }
+  };
+
+  handlePlotGraph = e => {
+    e.preventDefault();
+    if (!this.state.plotGraph) {
+      this.setState({ plotGraph: true });
+    } else {
+      this.setState({ plotGraph: false });
     }
   };
 
@@ -152,11 +164,20 @@ class Reports extends Component {
                 onChange={this.handleColumnChange}
                 options={this.columnsOptionsList()}
               />
+              <Checkbox
+                name="form-field-name"
+                value="Plot graph"
+                onChange={this.handlePlotGraph}
+                checked={this.state.plotGraph}
+              /> Plot Graph
               <input type="submit" value="Submit" />
             </form>
             <div>
               {this.state.renderSpecific && (
                 <div>
+                  {this.state.column && this.state.company && this.state.plotGraph &&
+                    <Graph data={this.state.filtered} />
+                  }
                   {this.state.filtered &&
                     this.state.filtered.map((update, i) => {
                       return (
