@@ -7,6 +7,7 @@ class TopCompanies extends Component {
   state = {
     yearBack: null,
     filteredUpdates: null,
+    percentages: null,
   }
 
   calcYearBack = () => {
@@ -38,20 +39,28 @@ class TopCompanies extends Component {
     this.setState({quarterBack: Date.parse(quarterBack)})
   }
 
+  // componentWillMount() {
+  //   this.props.fetchUpdates()
+  // }
+
   componentDidMount() {
     this.calcYearBack()
+    // this.filterByYear()
     this.props.fetchUpdates()
   }
 
   filterByYear = () => {
-    const { updates } = this.props;
-    let filteredUpdates = []
-    updates.forEach(update => {
-      if (Date.parse(update.timestamp) > this.state.yearBack) {
-        filteredUpdates.push(update)
-      }
-    })
-    this.divideCompanies(filteredUpdates)
+    // this.props.fetchUpdates()
+    // if (this.props.updates) {
+      const { updates } = this.props;
+      let filteredUpdates = []
+      updates.forEach(update => {
+        if (Date.parse(update.timestamp) > this.state.yearBack) {
+          filteredUpdates.push(update)
+        }
+      })
+      this.divideCompanies(filteredUpdates)
+    // }
   }
 
   divideCompanies = (filteredUpdates) => {
@@ -73,11 +82,12 @@ class TopCompanies extends Component {
       if (data.length > 1)
       companyData = [...companyData, {[company]: [...data]}]
     })
-    this.setState({companyData})
+    // this.setState({companyData})
+    this.calcPercentages(companyData)
   }
 
-  calcPercentages = () => {
-    const { companyData } = this.state;
+  calcPercentages = (companyData) => {
+    // const { companyData } = this.state;
     let percentages = []
     let completeValues = []
     companyData.forEach(company => {
@@ -93,20 +103,16 @@ class TopCompanies extends Component {
     this.setState({percentages})
   }
 
-  getChangeValues = () => {
-
-    this.state.companyData.map(company => {
-
-    })
-  }
-
   render() {
+    if (this.props.updates.length > 0 && !this.state.percentages) {
+      this.filterByYear()
+    }
     console.log(this.props)
     console.log(this.state)
     return (
       <div>
         <button onClick={() => this.filterByYear()}>Filter</button>
-        <button onClick={() => this.calcPercentages()}>Percentage</button>
+        {/* <button onClick={() => this.calcPercentages()}>Percentage</button> */}
         <div>
           {this.state.percentages && this.state.percentages.map(value => (
             <div key={`${Object.keys(value)}`}>
