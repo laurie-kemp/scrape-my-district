@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchUpdates } from '../../actions/updates';
 import { Redirect } from 'react-router-dom'
+import Card from '@material-ui/core/Card';
+//import Paper from "@material-ui/core/Paper"
 
 class TopCompanies extends Component {
   state = {
@@ -80,14 +82,14 @@ class TopCompanies extends Component {
     }
     return (
       <div>
-        <div>
+        <Card className='dataCard'>
           {this.state.percentages && this.state.percentages.map(value => (
             <div key={`${Object.keys(value)}`}>
               <h3>{`Company: ${Object.keys(value)}`}</h3>
               <h3>{`${Object.values(value)}%`}</h3>
             </div>
           ))}
-        </div>
+        </Card>
       </div>
     )
   }
