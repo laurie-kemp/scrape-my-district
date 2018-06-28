@@ -15,7 +15,7 @@ const TopBar = props => {
   const { location, history } = props;
 
   return (
-    <AppBar className="AppBar" position="fixed" style={{ zIndex: -1 }}>
+    <AppBar className="AppBar" position="fixed" style={{ zIndex: 2 }}>
       <Toolbar>
         <Typography
           variant="title"

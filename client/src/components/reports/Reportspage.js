@@ -6,6 +6,8 @@ import "react-select/dist/react-select.css";
 import Button from "@material-ui/core/Button";
 import Graph from "./Graph";
 import { Checkbox } from "@material-ui/core";
+import Card from '@material-ui/core/Card';
+import './Reports.css'
 
 class Reports extends Component {
   state = {
@@ -180,13 +182,16 @@ class Reports extends Component {
                   }
                   {this.state.filtered &&
                     this.state.filtered.map((update, i) => {
+                      console.log(update.timestamp.slice(0, 10))
                       return (
-                        <div key={`${i} ${update.company}`}>
+                        <Card key={`${i} ${update.company}`} className='dataCard dataList' >
                           <h1>{update.company}</h1>
-                          <span>{update.timestamp}</span>
-                          <span>{update.columnName}</span>
-                          <span>{update.change}</span>
-                        </div>
+                          <div className='update-card'>
+                            <span>{update.timestamp.slice(0, 10)}</span>
+                            <span>{update.columnName}</span>
+                            <span>{update.change}</span>
+                          </div>
+                        </Card>
                       );
                     })}
                 </div>
