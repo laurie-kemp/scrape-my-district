@@ -4,7 +4,7 @@ import { updateCSV, companiesToAdd } from "../actions/list";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 import FileUpload from "@material-ui/icons/FileUpload";
-import { newCompanies } from "../../src/lib/functions";
+import { newComp, changes } from "../../src/lib/functions";
 
 export class FileSelector extends Component {
   state = {
@@ -39,7 +39,6 @@ export class FileSelector extends Component {
     this.setState({ data });
 
     updateCSV(this.state.data);
-
     // const companies = newCompanies(databases, csv);
     // companiesToAdd(newCompanies(dbArray, csvArray));
     // if (dbArray && csvArray.length > 0) {
@@ -55,13 +54,14 @@ export class FileSelector extends Component {
   };
 
   render() {
-    const { databases, csv, companiesToAdd } = this.props;
+    const { databases, csv, companiesToAdd, newCompanies } = this.props;
+    const comp = newCompanies
     let dbArray = [];
     if (databases) dbArray = Object.keys(databases).map(i => databases[i]);
     let csvArray = [];
     if (csv) csvArray = Object.keys(csv).map(i => csv[i]);
     if (dbArray.length > 0 && csvArray.length > 0) {
-      companiesToAdd(newCompanies(dbArray, csvArray));
+      companiesToAdd(newComp(dbArray, csvArray));
     }
     return (
       <div>
@@ -83,10 +83,9 @@ export class FileSelector extends Component {
   }
 }
 
-const mapStateToProps = ({ databases, csv }) => ({
+const mapStateToProps = ({ databases, csv}) => ({
   databases,
-  csv,
-  newCompanies
+  csv
 });
 
 export default connect(

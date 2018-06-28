@@ -26,8 +26,9 @@ export default class DatabaseController {
 
   @Post("/databases")
   async createDatabase(@Body() database: Database) {
-    const entity = await database.save();
-    return { entity };
+    await database.save();
+    const databases = await Database.find()
+    return { databases };
   }
 
   @Put("/databases/:id([0-9]+)")
