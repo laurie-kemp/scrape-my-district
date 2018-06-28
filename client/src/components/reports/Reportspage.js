@@ -151,7 +151,7 @@ class Reports extends Component {
         {this.state.renderOptions && (
           <div>
             <form onSubmit={this.handleSubmit}>
-              <label>Fetch updates for company</label>
+              <label>Change reports on specific companies</label>
               <Select
                 name="form-field-name"
                 value={this.state.company}
@@ -170,7 +170,7 @@ class Reports extends Component {
                 onChange={this.handlePlotGraph}
                 checked={this.state.plotGraph}
               /> Plot Graph
-              <input type="submit" value="Submit" />
+              <Button type="submit" value="Submit">Submit</Button>
             </form>
             <div>
               {this.state.renderSpecific && (
@@ -183,9 +183,9 @@ class Reports extends Component {
                       return (
                         <div key={`${i} ${update.company}`}>
                           <h1>{update.company}</h1>
-                          <h2>{update.timestamp}</h2>
-                          <h2>{update.columnName}</h2>
-                          <h2>{update.change}</h2>
+                          <span>{update.timestamp}</span>
+                          <span>{update.columnName}</span>
+                          <span>{update.change}</span>
                         </div>
                       );
                     })}
