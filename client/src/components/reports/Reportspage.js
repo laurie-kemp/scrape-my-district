@@ -4,6 +4,8 @@ import { fetchUpdates } from "../../actions/updates";
 import Select from "react-select";
 import "react-select/dist/react-select.css";
 import Button from "@material-ui/core/Button";
+import Graph from "./Graph";
+import { Checkbox } from "@material-ui/core";
 
 class Reports extends Component {
   state = {
@@ -69,7 +71,8 @@ class Reports extends Component {
       companies: companiesWithoutDuplicates,
       renderOptions: true,
       columns: columnsWithoutDuplicates,
-      value: companiesWithoutDuplicates[0]
+      value: companiesWithoutDuplicates[0],
+      plotGraph: false
     });
   };
 
@@ -92,6 +95,15 @@ class Reports extends Component {
       this.setState({ column: value });
     } else {
       this.setState({ column: "" });
+    }
+  };
+
+  handlePlotGraph = e => {
+    e.preventDefault();
+    if (!this.state.plotGraph) {
+      this.setState({ plotGraph: true });
+    } else {
+      this.setState({ plotGraph: false });
     }
   };
 
@@ -139,7 +151,7 @@ class Reports extends Component {
         {this.state.renderOptions && (
           <div>
             <form onSubmit={this.handleSubmit}>
-              <label>Fetch updates for company</label>
+              <label>Change reports on specific companies</label>
               <Select
                 name="form-field-name"
                 value={this.state.company}
@@ -152,19 +164,28 @@ class Reports extends Component {
                 onChange={this.handleColumnChange}
                 options={this.columnsOptionsList()}
               />
-              <input type="submit" value="Submit" />
+              <Checkbox
+                name="form-field-name"
+                value="Plot graph"
+                onChange={this.handlePlotGraph}
+                checked={this.state.plotGraph}
+              /> Plot Graph
+              <Button type="submit" value="Submit">Submit</Button>
             </form>
             <div>
               {this.state.renderSpecific && (
                 <div>
+                  {this.state.column && this.state.company && this.state.filtered.length > 0 && this.state.plotGraph &&
+                    <Graph data={this.state.filtered} />
+                  }
                   {this.state.filtered &&
                     this.state.filtered.map((update, i) => {
                       return (
                         <div key={`${i} ${update.company}`}>
                           <h1>{update.company}</h1>
-                          <h2>{update.timestamp}</h2>
-                          <h2>{update.columnName}</h2>
-                          <h2>{update.change}</h2>
+                          <span>{update.timestamp}</span>
+                          <span>{update.columnName}</span>
+                          <span>{update.change}</span>
                         </div>
                       );
                     })}
