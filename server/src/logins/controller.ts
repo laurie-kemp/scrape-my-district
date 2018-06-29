@@ -29,7 +29,3 @@ export default class LoginController {
     return { jwt };
   }
 }
-
-// http post :4000/logins email="laurie.kemp@scaleupnation.com" password="Laurie999"
-
-// http post :4000/logins email="Laurie" lastName="Kemp" email="laurie.kemp@scaleupnation.com" password="Laurie999"

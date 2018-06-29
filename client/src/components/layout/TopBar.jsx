@@ -6,9 +6,6 @@ import Button from "@material-ui/core/Button";
 import { withRouter } from "react-router";
 import { userId } from "../../jwt";
 import { connect } from "react-redux";
-//import IconButton from '@material-ui/core/IconButton';
-//import AccountCircle from '@material-ui/icons/AccountCircle';
-//import AccountIcon from "@material-ui/icons/AccountBox";
 import "../../App.css";
 
 const TopBar = props => {

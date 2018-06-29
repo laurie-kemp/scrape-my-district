@@ -19,7 +19,6 @@ export class List extends React.Component {
 
   componentWillMount() {
     this.props.fetchAllData();
-    //this.props.fetchUpdates();
   }
 
   render() {
@@ -38,22 +37,10 @@ export class List extends React.Component {
         const dbupdate = {
           HQ_source: change[0].csv_location
         }
-        // this.props.addUpdate(update)
+        
         this.props.changeCell(change[0].id, dbupdate)
-        // this.props.addUpdate(update)
+       
       })
-
-      // ChangesfromCSV.map(change => {
-      //   console.log(change[0])
-      //   const update = {
-      //     company: change[0].venture,
-      //     columnName: "HQ_source",
-      //     change: change[0].csv_location
-      //   };
-      //   this.props.addUpdate(update)
-      // })
-
-
 
     }
     let dbArray = [];

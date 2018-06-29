@@ -5,7 +5,6 @@ export const FETCH_ALL_UPDATES = "FETCH_ALL_UPDATES";
 export const ADD_UPDATE = "ADD_UPDATE";
 
 export const fetchUpdates = () => dispatch => {
-  // console.log('happening?')
   request
     .get(`${baseUrl}/updates`)
     // .set("Authorization", `Bearer ${jwt}`)

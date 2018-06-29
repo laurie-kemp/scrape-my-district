@@ -12,7 +12,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import "../../App.css";
 
-//import Paper from "@material-ui/core/Paper"
 
 class TopCompanies extends Component {
   state = {
@@ -130,13 +129,3 @@ const mapStateToProps = state => {
 }
 export default connect(mapStateToProps, {fetchUpdates})(TopCompanies)
 
-
-
-
-
-/* {this.state.percentages && this.state.percentages.map(value => (
-  <div key={`${Object.keys(value)}`}>
-    <h3>{`Company: ${Object.keys(value)}`}</h3>
-    <h3>{`${Object.values(value)}%`}</h3>
-  </div>
-))} */

@@ -31,27 +31,13 @@ export class FileSelector extends Component {
     if (databases) dbArray = Object.keys(databases).map(i => databases[i]);
     let csvArray = [];
     if (csv) csvArray = Object.keys(csv).map(i => csv[i]);
-    // console.log(dbArray, "DB IN FILE SELECTOR");
-    // console.log(csvArray, "CSV IN FILE SELECTOR");
-    // console.log(this.state.data);
+
 
     const data = result.data;
     this.setState({ data });
 
     updateCSV(this.state.data);
-    // const companies = newCompanies(databases, csv);
-    // companiesToAdd(newCompanies(dbArray, csvArray));
-    // if (dbArray && csvArray.length > 0) {
-    //   console.log("calling new companies from file selector");
-    //   console.log(dbArray, "DB ARRAY");
-    //   console.log(csvArray, "CSV ARRAY");
-    //   let payload;
-    //   if (csvArray.length > 0) payload = newCompanies(dbArray, csvArray);
-    //   console.log(payload, "THIS IS THE PAYLOAD");
-    //   if (payload) this.props.companiesToAdd(payload);
-    // }
-    // console.log(this.state.data, "this is uploaded data");
-  };
+    };
 
   render() {
     const { databases, csv, companiesToAdd, newCompanies } = this.props;
